@@ -1,228 +1,244 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rensol Next</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rensol - AI Enabled Software Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2962ff;
+            --text-color: #333;
+            --light-bg: #f8f9fa;
+        }
 
-    body {
-      font-family: 'Poppins', sans-serif;
-      background-color: #0d0d0d;
-      color: white;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
 
-    header {
-      background: rgba(31, 0, 54, 0.6);
-      padding: 1rem 3rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: relative;
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
+        body {
+            color: var(--text-color);
+            line-height: 1.6;
+        }
 
-    nav a {
-      color: white;
-      margin: 0 1rem;
-      text-decoration: none;
-      font-size: 0.9rem;
-    }
+        .navbar {
+            padding: 1rem 5%;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
 
-    .logo {
-      font-weight: bold;
-      color: #fff;
-      font-size: 1.2rem;
-      background: #9090ff;
-      padding: 0.4rem 1.2rem;
-      border-radius: 0.5rem;
-    }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
 
-    .hero {
-      position: relative;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 4rem 3rem;
-      background: rgba(42, 0, 63, 0.6);
-      border-radius: 20px;
-      margin: 2rem;
-      overflow: hidden;
-      backdrop-filter: blur(20px);
-    }
+        .hero {
+            padding: 8rem 5% 4rem;
+            text-align: center;
+            background: var(--light-bg);
+        }
 
-    .hero::before, .hero::after {
-      content: "";
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(120px);
-      opacity: 0.4;
-    }
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
 
-    .hero::before {
-      width: 400px;
-      height: 400px;
-      background: #8ad5ff;
-      top: -100px;
-      left: -100px;
-    }
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 2rem;
+            transition: transform 0.3s;
+        }
 
-    .hero::after {
-      width: 500px;
-      height: 500px;
-      background: #ff00cc;
-      bottom: -150px;
-      right: -150px;
-    }
+        .cta-button:hover {
+            transform: translateY(-3px);
+        }
 
-    .hero-text {
-      max-width: 50%;
-      z-index: 1;
-    }
+        .section {
+            padding: 4rem 5%;
+        }
 
-    .hero-text h1 {
-      font-size: 3rem;
-    }
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
 
-    .hero-text h2 {
-      font-size: 1.5rem;
-    }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
 
-    .hero-text p {
-      margin: 1rem 0;
-      color: #ccc;
-    }
+        .service-card {
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            text-align: center;
+        }
 
-    .hero-text .highlight {
-      color: #8ad5ff;
-    }
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
 
-    .hero-text .cta {
-      margin-top: 1rem;
-      padding: 0.6rem 1.2rem;
-      background: #aaaaff;
-      color: #000;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
+        .spotlight {
+            background: var(--light-bg);
+        }
 
-    .hero img {
-      max-width: 40%;
-      border-radius: 10px;
-      z-index: 1;
-      position: relative;
-    }
+        .spotlight-item {
+            background: white;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-left: 4px solid var(--primary-color);
+        }
 
-    .hero::after {
-      background: radial-gradient(circle at center, #8ad5ff22 0%, transparent 70%);
-      pointer-events: none;
-    }
+        footer {
+            background: var(--text-color);
+            color: white;
+            padding: 3rem 5%;
+            text-align: center;
+        }
 
-    .line-background {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-image: linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
-                        linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
-      background-size: 40px 40px;
-      z-index: 0;
-    }
+        .social-links {
+            margin-top: 2rem;
+        }
 
-    section {
-      padding: 3rem;
-      background: #0f0f23;
-    }
+        .social-links a {
+            color: white;
+            margin: 0 1rem;
+            font-size: 1.5rem;
+        }
 
-    .section-title {
-      font-size: 2rem;
-      margin-bottom: 2rem;
-    }
-
-    .cards {
-      display: flex;
-      gap: 2rem;
-      justify-content: center;
-    }
-
-    .card {
-      background: rgba(26, 26, 61, 0.8);
-      border-radius: 10px;
-      padding: 1.5rem;
-      text-align: center;
-      flex: 1;
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .card img {
-      width: 100%;
-      border-radius: 10px;
-    }
-
-    .card p {
-      margin-top: 1rem;
-      font-size: 1rem;
-    }
-  </style>
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <nav>
-      <a href="#">What we do</a>
-      <a href="#">How we do</a>
+    <nav class="navbar">
+        <div class="logo">Rensol</div>
     </nav>
-    <div class="logo">RENSOL NEXT</div>
-    <nav>
-      <a href="#">Insight</a>
-      <a href="#">Career</a>
-      <a href="#">Contact Us</a>
-    </nav>
-  </header>
 
-  <div class="hero">
-    <div class="line-background"></div>
-    <div class="hero-text">
-      <h1>Next Gen</h1>
-      <h2 class="highlight">AI Enabled Software Products and Services Company</h2>
-      <p>
-        Transforming Business Challenges Into Digital Success Stories, <span class="highlight">data-driven insights</span> Custom software solutions that evolve with your business needs. CTA Button: 'Start Your Digital Journey' <span class="highlight">strategic execution</span>.
-      </p>
-      <button class="cta">See more</button>
-    </div>
-    <img src="https://via.placeholder.com/300x300.png?text=VR+Person" alt="VR Person" />
-  </div>
+    <section class="hero">
+        <h1>Next Gen AI Enabled Software Products and Services</h1>
+        <p>Transforming Business Challenges into Digital Success Stories</p>
+        <a href="#contact" class="cta-button">Start Your Digital Journey</a>
+    </section>
 
-  <section>
-    <h2 class="section-title">What we do...</h2>
-    <div class="cards">
-      <div class="card">
-        <img src="https://via.placeholder.com/200x200.png?text=Consultancy" alt="Consultancy">
-        <p>Consultancy</p>
-      </div>
-      <div class="card">
-        <img src="https://via.placeholder.com/200x200.png?text=Design" alt="Design">
-        <p>Design</p>
-      </div>
-      <div class="card">
-        <img src="https://via.placeholder.com/200x200.png?text=Development" alt="Development">
-        <p>Development</p>
-      </div>
-    </div>
-  </section>
+    <section class="section">
+        <h2 class="section-title">What We Do</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>Consultancy</h3>
+                <p>Data-driven insights and strategic execution</p>
+            </div>
+            <div class="service-card">
+                <h3>Design</h3>
+                <p>User-centric interface design and experience</p>
+            </div>
+            <div class="service-card">
+                <h3>Development</h3>
+                <p>Custom software solutions for your business needs</p>
+            </div>
+        </div>
+    </section>
 
-  <section>
-    <h2 class="section-title">How we do...</h2>
-    <!-- Additional content can go here -->
-  </section>
+    <section class="section spotlight">
+        <h2 class="section-title">How We Do It</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>Experience</h3>
+                <p>Leading innovation for over a decade across 55 countries</p>
+            </div>
+            <div class="service-card">
+                <h3>Expertise</h3>
+                <p>Cutting-edge technology solutions across industries</p>
+            </div>
+            <div class="service-card">
+                <h3>Execution</h3>
+                <p>End-to-end digital transformation services</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">Products & Platforms</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>App Development</h3>
+                <p>Native and cross-platform mobile solutions</p>
+            </div>
+            <div class="service-card">
+                <h3>Web Development</h3>
+                <p>Responsive and scalable web applications</p>
+            </div>
+            <div class="service-card">
+                <h3>Software Development</h3>
+                <p>Custom enterprise-grade software solutions</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section spotlight">
+        <div class="spotlight-item">
+            <h3>Asia's Fastest Growing Tech Company</h3>
+            <p>400% YoY growth for 3 consecutive years</p>
+        </div>
+    </section>
+
+    <section class="section" id="careers">
+        <h2 class="section-title">Join Our Team</h2>
+        <p>Realize your potential with Rensol</p>
+        <a href="#careers" class="cta-button">Explore Careers</a>
+    </section>
+
+    <footer>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+        </div>
+        <p>Contact us at: REN@Liver</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add animation on scroll
+        window.addEventListener('scroll', function() {
+            const cards = document.querySelectorAll('.service-card');
+            cards.forEach(card => {
+                const cardPosition = card.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if(cardPosition < screenPosition) {
+                    card.style.opacity = '1';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
