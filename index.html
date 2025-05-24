@@ -6,386 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Rensol Next</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Poppins', sans-serif;
-      background-color: #ffffff;
-      color: #000000;
-      scroll-behavior: smooth;
-    }
-
-    header {
-      background: rgba(255, 255, 255, 0.7);
-      padding: 1rem 3rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: relative;
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    }
-
-    nav a {
-      color: #333;
-      margin: 0 1rem;
-      text-decoration: none;
-      font-size: 0.9rem;
-      position: relative;
-    }
-
-    nav a::after {
-      content: "";
-      position: absolute;
-      width: 0%;
-      height: 2px;
-      background: #8ad5ff;
-      bottom: -4px;
-      left: 0;
-      transition: 0.3s;
-    }
-
-    nav a:hover::after {
-      width: 100%;
-    }
-
-    .logo {
-      font-weight: bold;
-      color: #fff;
-      font-size: 1.2rem;
-      background: #9090ff;
-      padding: 0.4rem 1.2rem;
-      border-radius: 0.5rem;
-    }
-
-    .hero {
-      position: relative;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 4rem 3rem;
-      background: rgba(255, 255, 255, 0.6);
-      border-radius: 20px;
-      margin: 2rem;
-      overflow: hidden;
-      backdrop-filter: blur(60px);
-      border: 1px solid rgba(0, 0, 0, 0.05);
-      box-shadow: 0 0 60px rgba(0, 0, 0, 0.05);
-      animation: fadeIn 1s ease-in;
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .hero::before,
-    .hero::after {
-      content: "";
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(100px);
-      z-index: 0;
-    }
-
-    .hero::before {
-      width: 800px;
-      height: 800px;
-      background: radial-gradient(circle, #ff00cc33 0%, transparent 70%);
-      top: -200px;
-      left: -200px;
-    }
-
-    .hero::after {
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, #8ad5ff22 0%, transparent 70%);
-      bottom: -150px;
-      right: -150px;
-    }
-
-    .line-background {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-image: linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
-      background-size: 40px 40px;
-      z-index: 0;
-    }
-
-    .hero-text {
-      max-width: 50%;
-      z-index: 1;
-    }
-
-    .hero-text h1 {
-      font-size: 3rem;
-      color: #000;
-    }
-
-    .hero-text h2 {
-      font-size: 1.5rem;
-    }
-
-    .hero-text p {
-      margin: 1rem 0;
-      color: #333;
-    }
-
-    .hero-text .highlight {
-      color: #8ad5ff;
-    }
-
-    .hero-text .cta {
-      margin-top: 1rem;
-      padding: 0.6rem 1.2rem;
-      background: linear-gradient(135deg, #ff7eb3, #8ad5ff);
-      color: #000;
-      border: none;
-      border-radius: 30px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: all 0.3s ease;
-    }
-
-    .hero-text .cta:hover {
-      background: linear-gradient(135deg, #8ad5ff, #ff7eb3);
-      transform: scale(1.05);
-    }
-
-    .hero img {
-      max-width: 40%;
-      border-radius: 10px;
-      z-index: 1;
-      position: relative;
-      animation: float 4s ease-in-out infinite;
-    }
-
-    @keyframes float {
-      0% {
-        transform: translateY(0);
-      }
-
-      50% {
-        transform: translateY(-10px);
-      }
-
-      100% {
-        transform: translateY(0);
-      }
-    }
-
-    section {
-      padding: 3rem;
-      background: #f7f7f7;
-      color: #000;
-    }
-
-    .section-title {
-      font-size: 2rem;
-      margin-bottom: 2rem;
-      text-align: center;
-    }
-
-    .cards {
-      display: flex;
-      gap: 2rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .card {
-      background: rgba(255, 255, 255, 0.7);
-      border-radius: 15px;
-      padding: 1.5rem;
-      text-align: center;
-      flex: 1 1 250px;
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(0, 0, 0, 0.1);
-      box-shadow: 0 0 30px rgba(0, 0, 0, 0.05);
-      transition: transform 0.3s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-10px);
-    }
-
-    .card img {
-      width: 100%;
-      border-radius: 10px;
-    }
-
-    .card p {
-      margin-top: 1rem;
-      font-size: 1rem;
-    }
-
-    .testimonial {
-      font-style: italic;
-      color: #555;
-      text-align: center;
-      margin-top: 2rem;
-    }
-
-    footer {
-      background: #222;
-      color: #fff;
-      padding: 2rem;
-      text-align: center;
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-
-    .footer-grid div h4 {
-      margin-bottom: 0.5rem;
-    }
-
-    .footer-grid div ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .footer-grid div ul li {
-      margin-bottom: 0.5rem;
-    }
-
-    .footer-grid div ul li a {
-      color: #ccc;
-      text-decoration: none;
-    }
-
-    .footer-grid div ul li a:hover {
-      text-decoration: underline;
-    }
-
-
-
-    .container-ai {
-      position: fixed;
-      right: 8px;
-      top: 20px;
-      display: flex;
-      gap: 10px;
-      z-index: 100;
-    }
-
-    #micButton,
-    #stopButton {
-      width: 40px;
-      height: 40px;
-      padding: 0;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      transition: var(--transition);
-      background-color: var(--card-bg);
-      color: var(--text-primary);
-      border: none;
-      cursor: pointer;
-    }
-
-    #micButton:hover,
-    #stopButton:hover {
-      background-color: var(--accent-gold);
-      color: var(--darker-bg);
-    }
-
-    #micButton.listening {
-      background-color: var(--accent-gold);
-      color: var(--darker-bg);
-      animation: pulse 1.5s infinite;
-    }
-
-    @keyframes pulse {
-      0% {
-        transform: scale(1);
-      }
-
-      50% {
-        transform: scale(1.1);
-      }
-
-      100% {
-        transform: scale(1);
-      }
-    }
-
-    #popup {
-      display: none;
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 300px;
-      background-color: var(--card-bg);
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      padding: 15px;
-      z-index: 1000;
-    }
-
-    #transcript,
-    #response {
-      margin: 10px 0;
-      padding: 10px;
-      border-radius: 8px;
-      background-color: var(--darker-bg);
-      font-size: 14px;
-      color: var(--text-primary);
-    }
-
-    #overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.5);
-  z-index: 999;
-}
-
-
-    @media (max-width: 768px) {
-      .container-ai {
-        top: auto;
-        bottom: 20px;
-      }
-
-      #micButton,
-      #stopButton {
-        width: 45px;
-        height: 45px;
-        font-size: 23px;
-      }
-    } */
-  </style>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -414,28 +40,130 @@
     <div id="response"></div>
   </div>
 
-  <section class="hero">
-    <div class="line-background"></div>
-    <div class="hero-text">
-      <h1>Next Gen</h1>
-      <h2 class="highlight">AI Enabled Software Products and Services Company</h2>
-      <p>We build intelligent solutions that empower digital transformation, streamline operations, and unlock
-        innovation potential.</p>
-      <button class="cta">Start Your Digital Journey</button>
+  <section id="main">
+    <section class="hero">
+      <div class="line-background"></div>
+      <div class="hero-text">
+        <h1>Next Gen</h1>
+        <h2 class="highlight">AI Enabled Software Products and Services Company</h2>
+        <p>We build intelligent solutions that empower digital transformation, streamline operations, and unlock
+          innovation potential.</p>
+        <button class="cta">Start Your Digital Journey</button>
+      </div>
+      <img src="vr-img.png" alt="Virtual Reality" />
+    </section>
+    <section class="card-3">
+    <div class="spotlight">
+      <h2>What we do..</h2>
+      <div class="spotlight-cards">
+        <div class="card">
+          <img src="vr-img.png" alt="Spotlight Image">
+          <p>Asia big company given 400% growth</p>
+        </div>
+        <div class="card">
+          <img src="vr-img.png" alt="Spotlight Image">
+          <p>Asia big company given 400% growth</p>
+        </div>
+        <div class="card">
+          <img src="vr-img.png" alt="Spotlight Image">
+          <p>Asia big company given 400% growth</p>
+        </div>
+      </div>
     </div>
-    <img src="vr-img.png" alt="Virtual Reality" />
+  </div>
+</section>
+    <div class="section">
+      <div class="title">How we do...</div>
+
+      <div class="content-block">
+        <div class="image-block">
+          <img src="vr-img.png" alt="Coder at work" class="image1">
+          <img src="vr-img.png" alt="Black and white tech" class="image2">
+          <img src="vr-img.png" alt="Car dashboard" class="image3">
+        </div>
+        <div class="text-block">
+          <h3>Experience the best with us ...</h3>
+          <h2>Rensol is here to make a difference through technology.</h2>
+          <p>Leading the way in innovation for over years, we build greater futures for businesses across multiple
+            industries and 55 countries.</p>
+          <button>See more</button>
+        </div>
+      </div>
+
+      <div class="content-block">
+        <div class="text-block">
+          <h3>Experience the best with us ...</h3>
+          <h2>Rensol is here to make a difference through technology.</h2>
+          <p>Leading the way in innovation for over years, we build greater futures for businesses across multiple
+            industries and 55 countries.</p>
+          <button>See more</button>
+        </div>
+        <div class="image-block">
+          <img src="vr-img.png" alt="Coder at work" class="image1">
+          <img src="vr-img.png" alt="Black and white tech" class="image2">
+          <img src="vr-img.png" alt="Car dashboard" class="image3">
+        </div>
+      </div>
+
+      
   </section>
+
+  <div class="container">
+    <h1>Products and platforms</h1>
+    <p>Cutting edge solutions to power up your business.</p>
+
+    <div class="products">
+      <div class="product-box">
+        <a href="www.google.com"><h2>App devlopment</h2>
+        <p>Creating and maintaining the apps to scale them to million of users</p></a>
+      </div>
+      <div class="product-box">
+        <a href="#"><h2>Web devlopment</h2>
+        <p>Creating and maintaining the apps to scale them to million of users</p></a>
+      </div>
+      <div class="product-box">
+        <a href="#"><h2>Web App devlopment</h2>
+        <p>Creating and maintaining the apps to scale them to million of users</p></a>
+      </div>
+      <div class="product-box">
+        <a href="#"><h2>Software devlopment</h2>
+        <p>Creating and maintaining the apps to scale them to million of users</p></a>
+      </div>
+      <div class="product-box">
+        <a href="#"><h2>Maintaince</h2>
+        <p>Creating and maintaining the apps to scale them to million of users</p></a>
+      </div>
+    </div>
+
+    <div class="spotlight">
+      <h2>Spotlight on Rensol Next</h2>
+      <div class="spotlight-cards">
+        <div class="card">
+          <img src="vr-img.png" alt="Spotlight Image">
+          <p>Asia big company given 400% growth</p>
+        </div>
+        <div class="card">
+          <img src="vr-img.png" alt="Spotlight Image">
+          <p>Asia big company given 400% growth</p>
+        </div>
+        <div class="card">
+          <img src="vr-img.png" alt="Spotlight Image">
+          <p>Asia big company given 400% growth</p>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <section>
-    <h2 class="section-title">What our clients say</h2>
-    <div class="testimonial">“Rensol Next completely transformed our business operations with AI-driven insights.” —
-      <strong>Digital Tech Inc.</strong>
-    </div>
-    <div class="testimonial">“Professional, innovative and truly next-gen. We loved working with the team.” —
-      <strong>InnovateX Solutions</strong>
-    </div>
-  </section>
-
+        <h2 class="section-title">What our clients say</h2>
+        <div class="testimonial">“Rensol Next completely transformed our business operations with AI-driven insights.” —
+          <strong>Digital Tech Inc.</strong>
+        </div>
+        <div class="testimonial">“Professional, innovative and truly next-gen. We loved working with the team.” —
+          <strong>InnovateX Solutions</strong>
+        </div>
+      </section>
+  <!-- footer  -->
   <footer>
     <div class="footer-grid">
       <div>

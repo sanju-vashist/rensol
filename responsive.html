@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rensol Next Responsive </title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        /* ===== CSS RESET ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* ===== CSS VARIABLES ===== */
+        :root {
+            --primary-color: #8ad5ff;
+            --secondary-color: #ff7eb3;
+            --accent-color: #9090ff;
+            --text-primary: #000000;
+            --text-secondary: #333333;
+            --text-light: #555555;
+            --bg-white: #ffffff;
+            --bg-light: #f7f7f7;
+            --bg-dark: #222222;
+            --card-bg: rgba(255, 255, 255, 0.7);
+            --border-light: rgba(0, 0, 0, 0.1);
+            --shadow-light: 0 0 30px rgba(0, 0, 0, 0.05);
+            --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.2);
+            --transition: all 0.3s ease;
+            --border-radius: 15px;
+            --gradient-primary: linear-gradient(135deg, #ff7eb3, #8ad5ff);
+            --gradient-secondary: linear-gradient(to right, #b453f6, #94e0c5);
+        }
+
+        /* ===== BASE STYLES ===== */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-white);
+            color: var(--text-primary);
+            scroll-behavior: smooth;
+            line-height: 1.6;
+        }
+
+        /* ===== HEADER SECTION ===== */
+        header {
+            background: var(--card-bg);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .logo {
+            font-weight: bold;
+            color: var(--bg-white);
+            font-size: 1.2rem;
+            background: var(--accent-color);
+            padding: 0.4rem 1.2rem;
+            border-radius: 0.5rem;
+        }
+
+        nav {
+            display: flex;
+            gap: 1rem;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        nav a::after {
+            content: "";
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            background: var(--primary-color);
+            bottom: -4px;
+            left: 0;
+            transition: var(--transition);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 4rem 2rem;
+            background: var(--card-bg);
+            border-radius: 20px;
+            margin: 2rem;
+            overflow: hidden;
+            backdrop-filter: blur(60px);
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-light);
+            animation: fadeIn 1s ease-in;
+            min-height: 500px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero::before,
+        .hero::after {
+            content: "";
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: 0;
+        }
+
+        .hero::before {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, #ff00cc33 0%, transparent 70%);
+            top: -200px;
+            left: -200px;
+        }
+
+        .hero::after {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, #8ad5ff22 0%, transparent 70%);
+            bottom: -150px;
+            right: -150px;
+        }
+
+        .line-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: 0;
+        }
+
+        .hero-text {
+            flex: 1;
+            max-width: 50%;
+            z-index: 1;
+        }
+
+        .hero-text h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--text-primary);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-text h2 {
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            margin-bottom: 1rem;
+        }
+
+        .hero-text .highlight {
+            color: var(--primary-color);
+        }
+
+        .hero-text p {
+            margin: 1rem 0;
+            color: var(--text-secondary);
+            font-size: clamp(0.9rem, 2vw, 1rem);
+        }
+
+        .hero-text .cta {
+            margin-top: 1.5rem;
+            padding: 0.8rem 1.5rem;
+            background: var(--gradient-primary);
+            color: var(--text-primary);
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .hero-text .cta:hover {
+            background: linear-gradient(135deg, #8ad5ff, #ff7eb3);
+            transform: scale(1.05);
+        }
+
+        .hero img {
+            flex: 1;
+            max-width: 40%;
+            border-radius: 10px;
+            z-index: 1;
+            position: relative;
+            animation: float 4s ease-in-out infinite;
+            object-fit: cover;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* ===== WHAT WE DO SECTION ===== */
+        .card-3 {
+            padding: 3rem 2rem;
+            background: var(--bg-light);
+        }
+
+        .spotlight h2 {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            margin-bottom: 2rem;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .spotlight-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: linear-gradient(135deg, #8e44ad, #3498db);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            transition: var(--transition);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .card p {
+            font-size: 1rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        /* ===== HOW WE DO SECTION ===== */
+        .section {
+            padding: 3rem 2rem;
+            background: var(--bg-white);
+        }
+
+        .title {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: bold;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .content-block {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            margin-bottom: 4rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .text-block {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .text-block h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .text-block h2 {
+            font-size: clamp(1.2rem, 3vw, 1.4rem);
+            color: #5e2674;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .text-block p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .text-block button {
+            background: var(--gradient-secondary);
+            border: none;
+            border-radius: 20px;
+            padding: 10px 25px;
+            color: white;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .text-block button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        }
+
+        .image-block {
+            flex: 1;
+            display: grid;
+            grid-template-areas:
+                "img1 img2"
+                "img1 img3";
+            gap: 10px;
+            width: 100%;
+            max-width: 400px;
+            height: 300px;
+        }
+
+        .image-block img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            box-shadow: var(--shadow-medium);
+            transition: var(--transition);
+        }
+
+        .image-block img:hover {
+            transform: scale(1.02);
+        }
+
+        .image1 {
+            grid-area: img1;
+            border-top-right-radius: 60px;
+            border-bottom-left-radius: 10px;
+        }
+
+        .image2 {
+            grid-area: img2;
+            border-top-right-radius: 30px;
+        }
+
+        .image3 {
+            grid-area: img3;
+            border-top-left-radius: 30px;
+        }
+
+        /* ===== PRODUCTS SECTION ===== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            background: var(--bg-light);
+        }
+
+        .container h1 {
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .container > p {
+            font-size: 1rem;
+            color: var(--text-light);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .product-box {
+            padding: 1.5rem;
+            border-bottom: 3px solid var(--primary-color);
+            position: relative;
+            /* background: var(--bg-white); */
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+
+        .product-box:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .product-box::after {
+            content: '\2192';
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+            color: var(--primary-color);
+        }
+
+        .product-box h2 {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-box p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .product-box a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ===== TESTIMONIALS SECTION ===== */
+        .testimonials {
+            padding: 3rem 2rem;
+            background: var(--bg-white);
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+
+        .testimonial {
+            font-style: italic;
+            color: var(--text-light);
+            margin: 1.5rem auto;
+            max-width: 600px;
+            font-size: 1rem;
+        }
+
+        /* ===== AI ASSISTANT BUTTONS ===== */
+        .container-ai {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        #micButton,
+        #stopButton {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            transition: var(--transition);
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            cursor: pointer;
+            box-shadow: var(--shadow-medium);
+        }
+
+        #micButton:hover,
+        #stopButton:hover {
+            background: var(--primary-color);
+            transform: scale(1.1);
+        }
+
+        #micButton.listening {
+            background: var(--secondary-color);
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        #popup {
+            display: none;
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 300px;
+            background: var(--bg-white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-medium);
+            padding: 15px;
+            z-index: 1000;
+            border: 1px solid var(--border-light);
+        }
+
+        #transcript,
+        #response {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 8px;
+            background: var(--bg-light);
+            font-size: 14px;
+            color: var(--text-primary);
+        }
+
+        #overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+        }
+
+        /* ===== FOOTER SECTION ===== */
+        footer {
+            background: var(--bg-dark);
+            color: var(--bg-white);
+            padding: 3rem 2rem 2rem;
+            text-align: center;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: left;
+        }
+
+        .footer-grid div h4 {
+            margin-bottom: 1rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .footer-grid div ul {
+            list-style: none;
+        }
+
+        .footer-grid div ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-grid div ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-grid div ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding: 2rem 1rem;
+                margin: 1rem;
+            }
+
+            .hero-text {
+                max-width: 100%;
+                margin-bottom: 2rem;
+            }
+
+            .hero img {
+                max-width: 80%;
+            }
+
+            .content-block {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .content-block:nth-child(odd) .image-block {
+                order: -1;
+            }
+
+            .image-block {
+                max-width: 100%;
+                height: 250px;
+                grid-template-areas:
+                    "img1 img2"
+                    "img1 img3";
+            }
+
+            .container-ai {
+                right: 15px;
+                bottom: 15px;
+            }
+
+            #micButton,
+            #stopButton {
+                width: 45px;
+                height: 45px;
+                font-size: 18px;
+            }
+
+            #popup {
+                width: calc(100vw - 30px);
+                right: 15px;
+                bottom: 75px;
+            }
+
+            .spotlight-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .products {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 1.5rem 0.5rem;
+            }
+
+            .section {
+                padding: 2rem 1rem;
+            }
+
+            .container {
+                padding: 2rem 1rem;
+            }
+
+            .image-block {
+                height: 200px;
+            }
+
+            .card img {
+                height: 150px;
+            }
+        }
+
+        /* ===== UTILITY CLASSES ===== */
+        .text-center { text-align: center; }
+        .mb-2 { margin-bottom: 2rem; }
+        .mt-2 { margin-top: 2rem; }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">Rensol NEXT</div>
+        <nav>
+            <a href="#services">What we do</a>
+            <a href="#how">How we do</a>
+            <a href="#clients">Clients</a>
+            <a href="#career">Careers</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <!-- AI Assistant -->
+    <div class="container-ai">
+        <button id="micButton">
+            <i class="fas fa-microphone"></i>
+        </button>
+        <button id="stopButton">
+            <i class="fas fa-stop"></i>
+        </button>
+    </div>
+    <div id="overlay"></div>
+    <div id="popup">
+        <div id="transcript"></div>
+        <div id="response"></div>
+    </div>
+
+    <!-- Main Content -->
+    <main id="main">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="line-background"></div>
+            <div class="hero-text">
+                <h1>Next Gen</h1>
+                <h2 class="highlight">AI Enabled Software Products and Services Company</h2>
+                <p>We build intelligent solutions that empower digital transformation, streamline operations, and unlock innovation potential.</p>
+                <button class="cta">Start Your Digital Journey</button>
+            </div>
+            <img src="vr-img.png" alt="Virtual Reality Innovation" />
+        </section>
+
+        <!-- What We Do Section -->
+        <section id="services" class="card-3">
+            <div class="spotlight">
+                <h2>What we do..</h2>
+                <div class="spotlight-cards">
+                    <div class="card">
+                        <img src="vr-img.png" alt="Growth Solutions">
+                        <p>Asia big company given 400% growth</p>
+                    </div>
+                    <div class="card">
+                        <img src="vr-img.png" alt="AI Innovation">
+                        <p>Revolutionary AI implementations driving success</p>
+                    </div>
+                    <div class="card">
+                        <img src="vr-img.png" alt="Digital Transformation">
+                        <p>Complete digital transformation solutions</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How We Do Section -->
+        <section id="how" class="section">
+            <div class="title">How we do...</div>
+
+            <div class="content-block">
+                <div class="image-block">
+                    <img src="vr-img.png" alt="Coder at work" class="image1">
+                    <img src="vr-img.png" alt="Technology" class="image2">
+                    <img src="vr-img.png" alt="Innovation" class="image3">
+                </div>
+                <div class="text-block">
+                    <h3>Experience the best with us ...</h3>
+                    <h2>Rensol is here to make a difference through technology.</h2>
+                    <p>Leading the way in innovation for over years, we build greater futures for businesses across multiple industries and 55 countries.</p>
+                    <button>See more</button>
+                </div>
+            </div>
+
+            <div class="content-block">
+                <div class="text-block">
+                    <h3>Experience the best with us ...</h3>
+                    <h2>Rensol is here to make a difference through technology.</h2>
+                    <p>Leading the way in innovation for over years, we build greater futures for businesses across multiple industries and 55 countries.</p>
+                    <button>See more</button>
+                </div>
+                <div class="image-block">
+                    <img src="vr-img.png" alt="Solutions" class="image1">
+                    <img src="vr-img.png" alt="Analytics" class="image2">
+                    <img src="vr-img.png" alt="AI Technology" class="image3">
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section class="container">
+            <h1>Products and platforms</h1>
+            <p>Cutting edge solutions to power up your business.</p>
+
+            <div class="products">
+                <div class="product-box">
+                    <a href="#app-development">
+                        <h2>App Development</h2>
+                        <p>Creating and maintaining the apps to scale them to millions of users</p>
+                    </a>
+                </div>
+                <div class="product-box">
+                    <a href="#web-development">
+                        <h2>Web Development</h2>
+                        <p>Building responsive and modern web solutions for your business</p>
+                    </a>
+                </div>
+                <div class="product-box">
+                    <a href="#webapp-development">
+                        <h2>Web App Development</h2>
+                        <p>Comprehensive web applications with cutting-edge technology</p>
+                    </a>
+                </div>
+                <div class="product-box">
+                    <a href="#software-development">
+                        <h2>Software Development</h2>
+                        <p>Custom software solutions tailored to your specific needs</p>
+                    </a>
+                </div>
+                <div class="product-box">
+                    <a href="#maintenance">
+                        <h2>Maintenance</h2>
+                        <p>Ongoing support and maintenance for all your digital assets</p>
+                    </a>
+                </div>
+            </div>
+
+            <div class="spotlight">
+                <h2>Spotlight on Rensol Next</h2>
+                <div class="spotlight-cards">
+                    <div class="card">
+                        <img src="vr-img.png" alt="Success Story">
+                        <p>Asia big company given 400% growth</p>
+                    </div>
+                    <div class="card">
+                        <img src="vr-img.png" alt="Innovation">
+                        <p>Revolutionary solutions transforming industries</p>
+                    </div>
+                    <div class="card">
+                        <img src="vr-img.png" alt="Excellence">
+                        <p>Award-winning development and implementation</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="clients" class="testimonials">
+            <h2 class="section-title">What our clients say</h2>
+            <div class="testimonial">
+                "Rensol Next completely transformed our business operations with AI-driven insights." — <strong>Digital Tech Inc.</strong>
+            </div>
+            <div class="testimonial">
+                "Professional, innovative and truly next-gen. We loved working with the team." — <strong>InnovateX Solutions</strong>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-grid">
+            <div>
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#team">Team</a></li>
+                    <li><a href="#career">Careers</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Solutions</h4>
+                <ul>
+                    <li><a href="#ai-automation">AI & Automation</a></li>
+                    <li><a href="#cloud-services">Cloud Services</a></li>
+                    <li><a href="#consulting">Consulting</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#case-studies">Case Studies</a></li>
+                    <li><a href="#support">Support</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contact</h4>
+                <ul>
+                    <li>Email: info@rensolnext.com</li>
+                    <li>Phone: +1 800 123 456</li>
+                    <li>Address: 123 Tech Blvd, Innovation City</li>
+                </ul>
+            </div>
+        </div>
+        <p>&copy; 2025 Rensol Next. All rights reserved.</p>
+    </footer>
+
+    <script src="speak.js"></script>
+    <script>
+        // // AI Assistant functionality placeholder
+        // document.getElementById('micButton').addEventListener('click', function() {
+        //     this.classList.toggle('listening');
+        //     // Add your speech recognition logic here
+        // });
+
+        // document.getElementById('stopButton').addEventListener('click', function() {
+        //     document.getElementById('micButton').classList.remove('listening');
+        //     // Add your stop logic here
+        // });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // GSAP animations (if needed)
+        if (typeof gsap !== 'undefined') {
+            gsap.registerPlugin(ScrollTrigger);
+            
+            // Hero section animation
+            gsap.from(".hero-text h1", {
+                duration: 1,
+                y: 50,
+                opacity: 0,
+                ease: "power2.out",
+                delay: 0.2
+            });
+            
+            gsap.from(".hero-text h2", {
+                duration: 1,
+                y: 50,
+                opacity: 0,
+                ease: "power2.out",
+                delay: 0.4
+            });
+            
+            gsap.from(".hero-text p", {
+                duration: 1,
+                y: 50,
+                opacity: 0,
+                ease: "power2.out",
+                delay: 0.6
+            });
+            
+            gsap.from(".hero-text .cta", {
+                duration: 1,
+                y: 50,
+                opacity: 0,
+                ease: "power2.out",
+                delay: 0.8
+            });
+            
+            gsap.from(".hero img", {
+                duration: 1.2,
+                x: 100,
+                opacity: 0,
+                ease: "power2.out",
+                delay: 0.3
+            });
+            
+            // Cards animation on scroll
+            gsap.from(".card", {
+                scrollTrigger: {
+                    trigger: ".spotlight-cards",
+                    start: "top 80%",
+                    end: "bottom 20%",
+                    toggleActions: "play none none reverse"
+                },
+                duration: 0.8,
+                y: 100,
+                opacity: 0,
+                stagger: 0.2,
+                ease: "power2.out"
+            });
+            
+            // Content blocks animation
+            gsap.from(".content-block", {
+                scrollTrigger: {
+                    trigger: ".content-block",
+                    start: "top 80%",
+                    toggleActions: "play none none reverse"
+                },
+                duration: 1,
+                y: 50,
+                opacity: 0,
+                stagger: 0.3,
+                ease: "power2.out"
+            });
+            
+            // Product boxes animation
+            gsap.from(".product-box", {
+                scrollTrigger: {
+                    trigger: ".products",
+                    start: "top 80%",
+                    toggleActions: "play none none reverse"
+                },
+                duration: 0.8,
+                y: 50,
+                opacity: 0,
+                stagger: 0.1,
+                ease: "power2.out"
+            });
+        }
+        
+        // Mobile menu toggle (if needed for smaller screens)
+        function toggleMobileMenu() {
+            const nav = document.querySelector('nav');
+            nav.classList.toggle('mobile-open');
+        }
+        
+        // Intersection Observer for fade-in animations (alternative to GSAP)
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe elements for animation
+        document.querySelectorAll('.card, .product-box, .content-block').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Add fade-in class styles
+        const style = document.createElement('style');
+        style.textContent = `
+            .fade-in {
+                animation: fadeInUp 0.8s ease-out forwards;
+            }
+            
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Parallax effect for hero background
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * -0.5;
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.transform = `translateY(${rate}px)`;
+            }
+        });
+        
+        // Loading screen (optional)
+        window.addEventListener('load', () => {
+            document.body.classList.add('loaded');
+        });
+    </script>
+</body>
+</html>
