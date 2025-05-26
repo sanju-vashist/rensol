@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rensol Next Responsive </title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">Rensol NEXT</div>
+        <nav>
+            <a href="#services">What we do</a>
+            <a href="#how">How we do</a>
+            <a href="#clients">Clients</a>
+            <a href="#career">Careers</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <!-- AI Assistant -->
+    <div class="container-ai">
+        <button id="micButton">
+            <i class="fas fa-teletype"></i>
+        </button>
+        <button id="micButton">
+            <i class="fas fa-microphone"></i>
+        </button>
+        <button id="stopButton">
+            <i class="fas fa-stop"></i>
+        </button>
+    </div>
+    <div id="overlay"></div>
+    <div id="popup">
+        <div id="transcript"></div>
+        <div id="response"></div>
+    </div>
+
+    <!-- Main Content -->
+    <main id="main">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="line-background"></div>
+            <div class="hero-text">
+                <h1>Next Gen</h1>
+                <h2 class="highlight">AI Enabled Software Products and Services Company</h2>
+                <p>We build intelligent solutions that empower digital transformation, streamline operations, and unlock
+                    innovation potential.</p>
+                <button class="cta">Start Your Digital Journey</button>
+            </div>
+            <img src="vr-img.png" alt="Virtual Reality Innovation" />
+        </section>
+
+        <!-- What We Do Section -->
+        <section id="services" class="card-3">
+            <div class="spotlight">
+                <h2>What we do..</h2>
+                <div class="spotlight-cards">
+                    <div class="card">
+                        <img src="vr-img.png" alt="Growth Solutions">
+                        <p>Asia big company given 400% growth</p>
+                    </div>
+                    <div class="card">
+                        <img src="vr-img.png" alt="AI Innovation">
+                        <p>Revolutionary AI implementations driving success</p>
+                    </div>
+                    <div class="card">
+                        <img src="vr-img.png" alt="Digital Transformation">
+                        <p>Complete digital transformation solutions</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How We Do Section -->
+        <section id="how" class="section">
+            <div class="title">How we do...</div>
+
+            <div class="content-block">
+                <div class="image-block">
+                    <img src="vr-img.png" alt="Coder at work" class="image1">
+                    <img src="vr-img.png" alt="Technology" class="image2">
+                    <img src="vr-img.png" alt="Innovation" class="image3">
+                </div>
+                <div class="text-block">
+                    <h3>Experience the best with us ...</h3>
+                    <h2>Rensol is here to make a difference through technology.</h2>
+                    <p>Leading the way in innovation for over years, we build greater futures for businesses across
+                        multiple industries and 55 countries.</p>
+                    <button>See more</button>
+                </div>
+            </div>
+
+            <div class="content-block">
+                <div class="text-block">
+                    <h3>Experience the best with us ...</h3>
+                    <h2>Rensol is here to make a difference through technology.</h2>
+                    <p>Leading the way in innovation for over years, we build greater futures for businesses across
+                        multiple industries and 55 countries.</p>
+                    <button>See more</button>
+                </div>
+                <div class="image-block">
+                    <img src="vr-img.png" alt="Solutions" class="image1">
+                    <img src="vr-img.png" alt="Analytics" class="image2">
+                    <img src="vr-img.png" alt="AI Technology" class="image3">
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section class="container">
+            <h1>Products and platforms</h1>
+            <p>Cutting edge solutions to power up your business.</p>
+
+            <div class="products">
+                <div class="product-box">
+                    <a href="#app-development">
+                        <h2>App Development</h2>
+                        <p>Creating and maintaining the apps to scale them to millions of users</p>
+                    </a>
+                </div>
+                <div class="product-box">
+                    <a href="#web-development">
+                        <h2>Web Development</h2>
+                        <p>Building responsive and modern web solutions for your business</p>
+                    </a>
+                </div>
+                <div class="product-box">
+                    <a href="#webapp-development">
+                        <h2>Web App Development</h2>
+                        <p>Comprehensive web applications with cutting-edge technology</p>
+                    </a>
+                </div>
+                <div class="product-box">
+                    <a href="#software-development">
+                        <h2>Software Development</h2>
+                        <p>Custom software solutions tailored to your specific needs</p>
+                    </a>
+                </div>
+                <div class="product-box">
+                    <a href="#maintenance">
+                        <h2>Maintenance</h2>
+                        <p>Ongoing support and maintenance for all your digital assets</p>
+                    </a>
+                </div>
+            </div>
+
+            <div class="spotlight">
+                <h2>Spotlight on Rensol Next</h2>
+                <div class="spotlight-cards">
+                    <div class="card">
+                        <img src="vr-img.png" alt="Success Story">
+                        <p>Asia big company given 400% growth</p>
+                    </div>
+                    <div class="card">
+                        <img src="vr-img.png" alt="Innovation">
+                        <p>Revolutionary solutions transforming industries</p>
+                    </div>
+                    <div class="card">
+                        <img src="vr-img.png" alt="Excellence">
+                        <p>Award-winning development and implementation</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="clients" class="testimonials">
+            <h2 class="section-title">What our clients say</h2>
+            <div class="testimonial">
+                "Rensol Next completely transformed our business operations with AI-driven insights." — <strong>Digital
+                    Tech Inc.</strong>
+            </div>
+            <div class="testimonial">
+                "Professional, innovative and truly next-gen. We loved working with the team." — <strong>InnovateX
+                    Solutions</strong>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-grid">
+            <div>
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#team">Team</a></li>
+                    <li><a href="#career">Careers</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Solutions</h4>
+                <ul>
+                    <li><a href="#ai-automation">AI & Automation</a></li>
+                    <li><a href="#cloud-services">Cloud Services</a></li>
+                    <li><a href="#consulting">Consulting</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#case-studies">Case Studies</a></li>
+                    <li><a href="#support">Support</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contact</h4>
+                <ul>
+                    <li>Email: info@rensolnext.com</li>
+                    <li>Phone: +1 800 123 456</li>
+                    <li>Address: 123 Tech Blvd, Innovation City</li>
+                </ul>
+            </div>
+        </div>
+        <p>&copy; 2025 Rensol Next. All rights reserved.</p>
+    </footer>
+
+    <script src="speak.js"></script>
+    <script src="main.js"></script>
+    <script>
+        document.getElementById('micButton').addEventListener('click', function () {
+            window.open('chat.html', '_blank'); // opens in a new tab
+        });
+    </script>
+</body>
+
+</html>

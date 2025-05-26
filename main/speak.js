@@ -64,6 +64,12 @@ class VoiceAssistant {
             "Rensol Technologies has been recognized for excellence in client satisfaction, timely delivery, and innovative solutions. " +
             "The company continuously invests in R&D to stay ahead in technology trends and maintain competitive advantage." +
             "\n\n" +
+             "Projects: " +
+            "1. Saanjavni: A comprehensive medical information app with biometric registration, family medical history, emergency access, and monetization features. Created using Flutter and Firebase. " +
+            "2. Lafda: An anonymous chatting app that allows users to interact in group chats and share thoughts freely. " +
+            "2. Dowry Calculator: A fun app that calculates a hypothetical dowry amount based on user qualifications. " +
+            "4. The Normal app: A simple app that steals your data and sends it to server without even knowing and its aim is to educate how easy is to steal your data and how chiness app may do it.created using react native and supbase " +
+            "\n\n" +
             "Work Culture & Vision: " +
             "Rensol is committed to fostering a collaborative work culture, empowering teams, and driving digital innovation worldwide. " +
             "They focus on continuous learning, employee growth, and building sustainable technology ecosystems for clients globally.";
