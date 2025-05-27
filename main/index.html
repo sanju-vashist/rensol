@@ -14,9 +14,13 @@
 </head>
 
 <body>
-    <!-- Header -->
+    <div id="loader">
+        <h1 id="animated-text"></h1>
+    </div>
+
     <header>
-        <div class="logo">Rensol NEXT</div>
+        <!-- <div class="logo">Rensol NEXT</div> -->
+        <div class="logo"><img src="../rensol-logo.png" alt=""></div>
         <nav>
             <a href="#services">What we do</a>
             <a href="#how">How we do</a>
@@ -26,10 +30,12 @@
         </nav>
     </header>
 
+    <div id="navbar-container"></div>
+
     <!-- AI Assistant -->
     <div class="container-ai">
-        <button id="micButton">
-            <i class="fas fa-teletype"></i>
+        <button id="chatButton">
+            <i class="fas fa-comment"></i>
         </button>
         <button id="micButton">
             <i class="fas fa-microphone"></i>
@@ -44,7 +50,22 @@
         <div id="response"></div>
     </div>
 
-    <!-- Main Content -->
+    <!--  Chat Overlay  -->
+    <div id="chatOverlay">
+        <div class="chat-header">
+            <span>AI Assistant</span>
+            <button class="chat-close" id="closeChatButton">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div id="chatContainer"></div>
+        <div class="chat-input-container">
+            <input type="text" id="chatInput" placeholder="Type your message..." />
+            <button id="sendButton">Send</button>
+        </div>
+    </div>
+
+
     <main id="main">
         <!-- Hero Section -->
         <section class="hero">
@@ -56,26 +77,28 @@
                     innovation potential.</p>
                 <button class="cta">Start Your Digital Journey</button>
             </div>
-            <img src="vr-img.png" alt="Virtual Reality Innovation" />
+            <img src="../design-img.png" alt="Virtual Reality Innovation" />
         </section>
 
         <!-- What We Do Section -->
         <section id="services" class="card-3">
             <div class="spotlight">
                 <h2>What we do..</h2>
-                <div class="spotlight-cards">
-                    <div class="card">
-                        <img src="vr-img.png" alt="Growth Solutions">
-                        <p>Asia big company given 400% growth</p>
-                    </div>
-                    <div class="card">
-                        <img src="vr-img.png" alt="AI Innovation">
-                        <p>Revolutionary AI implementations driving success</p>
-                    </div>
-                    <div class="card">
-                        <img src="vr-img.png" alt="Digital Transformation">
-                        <p>Complete digital transformation solutions</p>
-                    </div>
+                 <div class="spotlight-cards">
+                    <a href="../product-and-platform/spotlight1.html" class="card">
+                        <img src="../3d-type.png" alt="Success Story">
+                        <p>Asia biggest company given 400% growth</p>
+                    </a>
+
+                    <a href="../product-and-platform/spotlight2.html" class="card">
+                        <img src="../computer-guy.jpg" alt="Innovation">
+                        <p>Revolutionary solutions transforming industries</p>
+                    </a>
+
+                    <a href="../product-and-platform/spotlight3.html" class="card">
+                        <img src="../globe.png" alt="Excellence">
+                        <p>Award-winning development and implementation</p>
+                    </a>
                 </div>
             </div>
         </section>
@@ -86,9 +109,9 @@
 
             <div class="content-block">
                 <div class="image-block">
-                    <img src="vr-img.png" alt="Coder at work" class="image1">
+                    <img src="../computer-guy.jpg" alt="Coder at work" class="image1">
                     <img src="vr-img.png" alt="Technology" class="image2">
-                    <img src="vr-img.png" alt="Innovation" class="image3">
+                    <img src="../design-img.png" alt="Innovation" class="image3">
                 </div>
                 <div class="text-block">
                     <h3>Experience the best with us ...</h3>
@@ -108,9 +131,9 @@
                     <button>See more</button>
                 </div>
                 <div class="image-block">
-                    <img src="vr-img.png" alt="Solutions" class="image1">
-                    <img src="vr-img.png" alt="Analytics" class="image2">
-                    <img src="vr-img.png" alt="AI Technology" class="image3">
+                    <img src="../computer-guy.jpg" alt="Coder at work" class="image1">
+                    <img src="vr-img.png" alt="Technology" class="image2">
+                    <img src="../design-img.png" alt="Innovation" class="image3">
                 </div>
             </div>
         </section>
@@ -156,19 +179,22 @@
             <div class="spotlight">
                 <h2>Spotlight on Rensol Next</h2>
                 <div class="spotlight-cards">
-                    <div class="card">
-                        <img src="vr-img.png" alt="Success Story">
-                        <p>Asia big company given 400% growth</p>
-                    </div>
-                    <div class="card">
-                        <img src="vr-img.png" alt="Innovation">
+                    <a href="../product-and-platform/spotlight1.html" class="card">
+                        <img src="../3d-type.png" alt="Success Story">
+                        <p>Asia biggest company given 400% growth</p>
+                    </a>
+
+                    <a href="../product-and-platform/spotlight2.html" class="card">
+                        <img src="../computer-guy.jpg" alt="Innovation">
                         <p>Revolutionary solutions transforming industries</p>
-                    </div>
-                    <div class="card">
-                        <img src="vr-img.png" alt="Excellence">
+                    </a>
+
+                    <a href="../product-and-platform/spotlight3.html" class="card">
+                        <img src="../globe.png" alt="Excellence">
                         <p>Award-winning development and implementation</p>
-                    </div>
+                    </a>
                 </div>
+            </div>
             </div>
         </section>
 
@@ -186,7 +212,7 @@
         </section>
     </main>
 
-    <!-- Footer -->
+
     <footer id="contact">
         <div class="footer-grid">
             <div>
@@ -228,9 +254,45 @@
     <script src="speak.js"></script>
     <script src="main.js"></script>
     <script>
-        document.getElementById('micButton').addEventListener('click', function () {
-            window.open('chat.html', '_blank'); // opens in a new tab
-        });
+        // document.getElementById('chatButton').addEventListener('click', function () {
+        //     window.open('chat.html', '_blank'); 
+        // });
+
+        const text = "RENSOL";
+        const speed = 100;
+        let index = 0;
+
+        function typeEffect() {
+            if (index < text.length) {
+                document.getElementById("animated-text").innerHTML += text.charAt(index);
+                index++;
+                setTimeout(typeEffect, speed);
+            } else {
+                setTimeout(showMainContent, 1000);
+            }
+        }
+
+        function showMainContent() {
+            const loader = document.getElementById("loader");
+            const mainContent = document.getElementById("main-content");
+
+            loader.style.transition = "opacity 0.5s ease-out";
+            loader.style.opacity = 0;
+
+            setTimeout(() => {
+                loader.style.display = "none";
+                mainContent.style.display = "block";
+
+                mainContent.style.opacity = 0;
+                mainContent.style.transition = "opacity 0.5s ease-in";
+                setTimeout(() => {
+                    mainContent.style.opacity = 1;
+                }, 50);
+            }, 500);
+        }
+
+        window.onload = typeEffect;
+
     </script>
 </body>
 
