@@ -1,472 +1,1051 @@
-<nav class="navbar">
-    <div class="nav-container">
-        <a href="#" class="logo">TechNova</a>
-        <ul class="nav-menu">
-            <li class="nav-item">
-                <a href="#" class="nav-link">Services</a>
-                <div class="glass-panel">
-                    <div class="panel-content">
-                        <div class="sidebar">
-                            <div class="sidebar-item active" data-target="cloud-solutions">
-                                <span class="sidebar-icon">☁️</span>
-                                Cloud Solutions
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechNova Solutions - IT Company</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f0f0f0 0%, #ffffff 100%);
+            color: #333;
+            /* Adjust text color for readability */
+        }
+
+        body::before {
+            background:
+                radial-gradient(circle at 20% 80%, rgba(200, 200, 255, 0.2) 0%, transparent 60%),
+                radial-gradient(circle at 80% 20%, rgba(255, 200, 255, 0.2) 0%, transparent 60%),
+                radial-gradient(circle at 40% 40%, rgba(200, 255, 255, 0.2) 0%, transparent 60%),
+                radial-gradient(circle at 60% 80%, rgba(255, 255, 200, 0.2) 0%, transparent 50%);
+            filter: blur(120px);
+            /* increased blur for more diffused effect */
+        }
+
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(2px);
+            z-index: -1;
+        }
+
+        @keyframes gradientShift {
+            0% {
+                transform: translateX(-20px) translateY(-20px) scale(1);
+            }
+
+            50% {
+                transform: translateX(20px) translateY(10px) scale(1.1);
+            }
+
+            100% {
+                transform: translateX(-10px) translateY(-15px) scale(0.95);
+            }
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            /* backdrop-filter: blur(20px); */
+            /* background: rgba(255, 255, 255, 0.1); */
+            /* border-bottom: 1px solid rgba(255, 255, 255, 0.2); */
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(25px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: rgb(17, 17, 17);
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            color: #333;
+            text-decoration: none;
+            padding: 0.7rem 1.2rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            position: relative;
+            font-weight: 500;
+        }
+
+        .nav-link:hover {
+            background: rgba(0, 0, 0, 0.05);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+
+        .glass-panel {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: min(900px, 90vw);
+            height: 75vh;
+            /* background: rgba(255, 255, 255, 0.08); */
+            /* backdrop-filter: blur(25px); */
+            /* border: 1px solid rgba(255, 255, 255, 0.2); */
+            border-radius: 24px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            z-index: 999;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(30px);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+
+        }
+
+
+        .nav-item:hover .glass-panel {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, -50%);
+        }
+
+        .panel-content {
+            display: flex;
+            height: 100%;
+            border-radius: 24px;
+            overflow: hidden;
+        }
+
+        /* Left Sidebar */
+        .sidebar {
+            width: 280px;
+            /* background: rgba(255, 255, 255, 0.06); */
+            /* border-right: 1px solid rgba(255, 255, 255, 0.1); */
+            padding: 2rem 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar-item {
+            padding: 1.2rem 2rem;
+            color: rgb(0, 0, 0);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-weight: 500;
+        }
+
+        .sidebar-item:hover,
+        .sidebar-item.active {
+            /* background: rgba(255, 255, 255, 0.12); */
+            /* border-left-color: #64ffda; */
+            transform: translateX(8px);
+            box-shadow: 0 4px 12px rgba(100, 255, 218, 0.1);
+            
+    background: rgba(0, 0, 0, 0.05);
+    border-left-color: #667eea;
+        }
+
+        .sidebar-icon {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+
+        .content-area {
+            flex: 1;
+            padding: 2rem;
+            /* color: white; */
+            color: #333;
+            overflow-y: auto;
+            max-height: 100%;
+        }
+
+
+
+        .content-section {
+            display: none;
+            animation: fadeInUp 0.6s ease;
+            height: 100%;
+            overflow-y: auto;
+        }
+
+        /* .content-section.active {
+            display: block;
+        } */
+
+        .content-section.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .content-title {
+            font-size: 2rem;
+            margin-bottom: 1.2rem;
+            background: linear-gradient(45deg, #64ffda, #00bcd4, #667eea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+
+        .content-description {
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            font-size: 1.05rem;
+        }
+
+
+        .feature-list {
+            list-style: none;
+            margin-bottom: 1.5rem;
+            display: grid;
+            gap: 0.6rem;
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .feature-item {
+            padding: 0.6rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            padding-left: 0.8rem;
+            font-size: 0.95rem;
+        }
+
+
+        .feature-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateX(5px);
+        }
+
+        .feature-item::before {
+            content: '✓';
+            /* color: #64ffda; */
+            font-weight: bold;
+            font-size: 1.1rem;
+            /* background: rgba(100, 255, 218, 0.1); */
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+    color: #667eea;
+    background: rgba(102, 126, 234, 0.1);
+        }
+
+
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(102, 126, 234, 0.4);
+            background-position: 100% 0;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 8rem;
+            padding: 6rem 2rem;
+            text-align: center;
+            color: white;
+            backdrop-filter: blur(5px);
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            /* background: linear-gradient(45deg, #ffffff, #64ffda, #667eea); */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+            line-height: 1.2;
+    background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            line-height: 1.6;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin-top: 4rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            /* background: rgba(255, 255, 255, 0.08); */
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            /* border: 1px solid rgba(255, 255, 255, 0.1); */
+    background: rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            /* color: #64ffda; */
+            display: block;
+    color: #667eea;
+        }
+
+        .stat-label {
+            opacity: 0.8;
+            margin-top: 0.5rem;
+        }
+
+
+        .content-title {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #64ffda, #00bcd4, #667eea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .content-description {
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+
+
+        .cta-button {
+            /* background: linear-gradient(45deg, #667eea, #764ba2, #667eea); */
+            background-size: 200% 200%;
+            /* color: white; */
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: 600;
+            font-size: 0.9rem;
+            box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
+            margin-top: auto;
+            flex-shrink: 0;
+            align-self: flex-start;
+    background: linear-gradient(45deg, #667eea, #764ba2, #667eea);
+    color: #fff;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .glass-panel {
+                width: 95vw;
+                height: 80vh;
+            }
+
+            .panel-content {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: 120px;
+                display: flex;
+                overflow-x: auto;
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                flex-shrink: 0;
+            }
+
+            .sidebar-item {
+                white-space: nowrap;
+                min-width: 120px;
+                font-size: 0.9rem;
+                padding: 0.8rem 1.5rem;
+            }
+
+            .content-area {
+                padding: 1.5rem;
+                height: calc(80vh - 120px);
+            }
+
+            .content-title {
+                font-size: 1.6rem;
+            }
+
+            .content-description {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">Rensol</a>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Services</a>
+                    <div class="glass-panel">
+                        <div class="panel-content">
+                            <div class="sidebar">
+                                <div class="sidebar-item active" data-target="cloud-solutions">
+                                    <span class="sidebar-icon">☁️</span>
+                                    Cloud Solutions
+                                </div>
+                                <div class="sidebar-item" data-target="ai-ml">
+                                    <span class="sidebar-icon">🤖</span>
+                                    AI & Machine Learning
+                                </div>
+                                <div class="sidebar-item" data-target="cybersecurity">
+                                    <span class="sidebar-icon">🔒</span>
+                                    Cybersecurity
+                                </div>
+                                <div class="sidebar-item" data-target="mobile-dev">
+                                    <span class="sidebar-icon">📱</span>
+                                    Mobile Development
+                                </div>
                             </div>
-                            <div class="sidebar-item" data-target="ai-ml">
-                                <span class="sidebar-icon">🤖</span>
-                                AI & Machine Learning
-                            </div>
-                            <div class="sidebar-item" data-target="cybersecurity">
-                                <span class="sidebar-icon">🔒</span>
-                                Cybersecurity
-                            </div>
-                            <div class="sidebar-item" data-target="mobile-dev">
-                                <span class="sidebar-icon">📱</span>
-                                Mobile Development
-                            </div>
-                        </div>
-                        <div class="content-area">
-                            <div class="content-section active" id="cloud-solutions">
-                                <h3 class="content-title">Cloud Solutions</h3>
-                                <p class="content-description">
-                                    Transform your business with scalable cloud infrastructure. We help
-                                    organizations migrate, optimize, and innovate in the cloud with enterprise-grade
-                                    security and reliability.
-                                </p>
-                                <ul class="feature-list">
-                                    <li class="feature-item">AWS, Azure & Google Cloud Migration</li>
-                                    <li class="feature-item">Kubernetes & Container Orchestration</li>
-                                    <li class="feature-item">Serverless Architecture Design</li>
-                                    <li class="feature-item">Multi-Cloud Strategy & Implementation</li>
-                                    <li class="feature-item">Cloud Security & Compliance</li>
-                                    <li class="feature-item">DevOps & CI/CD Pipeline Setup</li>
-                                </ul>
-                                <a href="#" class="cta-button">Explore Cloud Services</a>
-                            </div>
-                            <div class="content-section" id="ai-ml">
-                                <h3 class="content-title">AI & Machine Learning</h3>
-                                <p class="content-description">
-                                    Harness the power of artificial intelligence to automate processes, gain
-                                    insights, and create intelligent applications that drive business growth and
-                                    efficiency.
-                                </p>
-                                <ul class="feature-list">
-                                    <li class="feature-item">Custom AI Model Development</li>
-                                    <li class="feature-item">Natural Language Processing</li>
-                                    <li class="feature-item">Computer Vision Solutions</li>
-                                    <li class="feature-item">Predictive Analytics & Forecasting</li>
-                                    <li class="feature-item">MLOps & Model Deployment</li>
-                                    <li class="feature-item">Intelligent Automation & RPA</li>
-                                </ul>
-                                <a href="#" class="cta-button">Discover AI Solutions</a>
-                            </div>
-                            <div class="content-section" id="cybersecurity">
-                                <h3 class="content-title">Cybersecurity</h3>
-                                <p class="content-description">
-                                    Protect your digital assets with comprehensive security solutions. From threat
-                                    detection to incident response, we ensure your business stays secure in an
-                                    evolving threat landscape.
-                                </p>
-                                <ul class="feature-list">
-                                    <li class="feature-item">Security Assessment & Auditing</li>
-                                    <li class="feature-item">Penetration Testing & Vulnerability Scanning</li>
-                                    <li class="feature-item">Identity & Access Management</li>
-                                    <li class="feature-item">Security Operations Center (SOC)</li>
-                                    <li class="feature-item">Incident Response & Forensics</li>
-                                    <li class="feature-item">Compliance & Risk Management</li>
-                                </ul>
-                                <a href="#" class="cta-button">Secure Your Business</a>
-                            </div>
-                            <div class="content-section" id="mobile-dev">
-                                <h3 class="content-title">Mobile Development</h3>
-                                <p class="content-description">
-                                    Create engaging mobile experiences that connect with your customers. We build
-                                    native and cross-platform applications that perform flawlessly across all
-                                    devices.
-                                </p>
-                                <ul class="feature-list">
-                                    <li class="feature-item">Native iOS & Android Development</li>
-                                    <li class="feature-item">Cross-Platform Solutions (React Native, Flutter)</li>
-                                    <li class="feature-item">Progressive Web Applications</li>
-                                    <li class="feature-item">Mobile UI/UX Design</li>
-                                    <li class="feature-item">App Store Optimization</li>
-                                    <li class="feature-item">Mobile Analytics & Performance</li>
-                                </ul>
-                                <a href="#" class="cta-button">Build Your App</a>
+                            <div class="content-area">
+                                <div class="content-section active" id="cloud-solutions">
+                                    <h3 class="content-title">Cloud Solutions</h3>
+                                    <p class="content-description">
+                                        Transform your business with scalable cloud infrastructure. We help
+                                        organizations migrate, optimize, and innovate in the cloud with enterprise-grade
+                                        security and reliability.
+                                    </p>
+                                    <ul class="feature-list">
+                                        <li class="feature-item">AWS, Azure & Google Cloud Migration</li>
+                                        <li class="feature-item">Kubernetes & Container Orchestration</li>
+                                        <li class="feature-item">Serverless Architecture Design</li>
+                                    </ul>
+                                    <a href="#" class="cta-button">Explore Cloud Services</a>
+                                </div>
+                                <div class="content-section" id="ai-ml">
+                                    <h3 class="content-title">AI & Machine Learning</h3>
+                                    <p class="content-description">
+                                        Harness the power of artificial intelligence to automate processes, gain
+                                        insights, and create intelligent applications that drive business growth and
+                                        efficiency.
+                                    </p>
+                                    <ul class="feature-list">
+                                        <li class="feature-item">Custom AI Model Development</li>
+                                        <li class="feature-item">Natural Language Processing</li>
+                                        <li class="feature-item">Computer Vision Solutions</li>
+                                    </ul>
+                                    <a href="#" class="cta-button">Discover AI Solutions</a>
+                                </div>
+                                <div class="content-section" id="cybersecurity">
+                                    <h3 class="content-title">Cybersecurity</h3>
+                                    <p class="content-description">
+                                        Protect your digital assets with comprehensive security solutions. From threat
+                                        detection to incident response, we ensure your business stays secure in an
+                                        evolving threat landscape.
+                                    </p>
+                                    <ul class="feature-list">
+                                        <li class="feature-item">Security Assessment & Auditing</li>
+                                        <li class="feature-item">Penetration Testing & Vulnerability Scanning</li>
+                                        <li class="feature-item">Identity & Access Management</li>
+                                    </ul>
+                                    <a href="#" class="cta-button">Secure Your Business</a>
+                                </div>
+                                <div class="content-section" id="mobile-dev">
+                                    <h3 class="content-title">Mobile Development</h3>
+                                    <p class="content-description">
+                                        Create engaging mobile experiences that connect with your customers. We build
+                                        native and cross-platform applications that perform flawlessly across all
+                                        devices.
+                                    </p>
+                                    <ul class="feature-list">
+                                        <li class="feature-item">Native iOS & Android Development</li>
+                                        <li class="feature-item">Cross-Platform Solutions (React Native, Flutter)</li>
+                                        <li class="feature-item">Progressive Web Applications</li>
+                                        <li class="feature-item">Mobile UI/UX Design</li>
+                                        <li class="feature-item">App Store Optimization</li>
+                                        <li class="feature-item">Mobile Analytics & Performance</li>
+                                    </ul>
+                                    <a href="#" class="cta-button">Build Your App</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">Solutions</a>
-                <div class="glass-panel">
-                    <div class="panel-content">
-                        <div class="sidebar">
-                            <div class="sidebar-item active" data-target="enterprise">
-                                <span class="sidebar-icon">🏢</span>
-                                Enterprise Solutions
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Solutions</a>
+                    <div class="glass-panel">
+                        <div class="panel-content">
+                            <div class="sidebar">
+                                <div class="sidebar-item active" data-target="enterprise">
+                                    <span class="sidebar-icon">🏢</span>
+                                    Enterprise Solutions
+                                </div>
+                                <div class="sidebar-item" data-target="digital-transform">
+                                    <span class="sidebar-icon">🚀</span>
+                                    Digital Transformation
+                                </div>
+                                <div class="sidebar-item" data-target="data-analytics">
+                                    <span class="sidebar-icon">📊</span>
+                                    Data Analytics
+                                </div>
+                                <div class="sidebar-item" data-target="integration">
+                                    <span class="sidebar-icon">🔗</span>
+                                    System Integration
+                                </div>
                             </div>
-                            <div class="sidebar-item" data-target="digital-transform">
-                                <span class="sidebar-icon">🚀</span>
-                                Digital Transformation
-                            </div>
-                            <div class="sidebar-item" data-target="data-analytics">
-                                <span class="sidebar-icon">📊</span>
-                                Data Analytics
-                            </div>
-                            <div class="sidebar-item" data-target="integration">
-                                <span class="sidebar-icon">🔗</span>
-                                System Integration
-                            </div>
-                        </div>
-                        <div class="content-area">
-                            <div class="content-section active" id="enterprise">
-                                <h3 class="content-title">Enterprise Solutions</h3>
-                                <p class="content-description">
-                                    Comprehensive enterprise-grade solutions designed to streamline operations,
-                                    enhance productivity, and drive business growth at scale.
-                                </p>
-                                <ul class="feature-list">
-                                    <li class="feature-item">ERP Implementation & Customization</li>
-                                    <li class="feature-item">Customer Relationship Management</li>
-                                    <li class="feature-item">Supply Chain Management</li>
-                                    <li class="feature-item">Business Process Automation</li>
-                                    <li class="feature-item">Enterprise Resource Planning</li>
-                                    <li class="feature-item">Workflow Management Systems</li>
-                                </ul>
-                                <a href="#" class="cta-button">View Enterprise Solutions</a>
-                            </div>
-                            <div class="content-section" id="digital-transform">
-                                <h3 class="content-title">Digital Transformation</h3>
-                                <p class="content-description">
-                                    Accelerate your digital journey with strategic transformation initiatives that
-                                    modernize operations and create new business opportunities.
-                                </p>
-                                <ul class="feature-list">
-                                    <li class="feature-item">Digital Strategy & Roadmap</li>
-                                    <li class="feature-item">Legacy System Modernization</li>
-                                    <li class="feature-item">API-First Architecture</li>
-                                    <li class="feature-item">Microservices Implementation</li>
-                                    <li class="feature-item">Digital Customer Experience</li>
-                                    <li class="feature-item">Innovation Lab & Prototyping</li>
-                                </ul>
-                                <a href="#" class="cta-button">Start Your Transformation</a>
-                            </div>
-                            <div class="content-section" id="data-analytics">
-                                <h3 class="content-title">Data Analytics</h3>
-                                <p class="content-description">
-                                    Unlock the value of your data with advanced analytics solutions that provide
-                                    actionable insights and drive data-driven decision making.
-                                </p>
-                                <ul class="feature-list">
-                                    <li class="feature-item">Business Intelligence Dashboards</li>
-                                    <li class="feature-item">Real-time Data Processing</li>
-                                    <li class="feature-item">Data Warehousing & ETL</li>
-                                    <li class="feature-item">Advanced Analytics & Reporting</li>
-                                    <li class="feature-item">Data Visualization & Storytelling</li>
-                                    <li class="feature-item">Big Data & IoT Analytics</li>
-                                </ul>
-                                <a href="#" class="cta-button">Explore Analytics</a>
-                            </div>
-                            <div class="content-section" id="integration">
-                                <h3 class="content-title">System Integration</h3>
-                                <p class="content-description">
-                                    Seamlessly connect your systems, applications, and data sources to create a
-                                    unified digital ecosystem that enhances operational efficiency.
-                                </p>
-                                <ul class="feature-list">
-                                    <li class="feature-item">API Development & Management</li>
-                                    <li class="feature-item">Third-party System Integration</li>
-                                    <li class="feature-item">Database Integration & Migration</li>
-                                    <li class="feature-item">B2B Integration & EDI</li>
-                                    <li class="feature-item">Cloud-to-Cloud Integration</li>
-                                    <li class="feature-item">Real-time Data Synchronization</li>
-                                </ul>
-                                <a href="#" class="cta-button">Integrate Systems</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">Industries</a>
-                <div class="glass-panel">
-                    <div class="panel-content">
-                        <div class="sidebar">
-                            <div class="sidebar-item active" data-target="fintech">
-                                <span class="sidebar-icon">💳</span>
-                                Financial Services
-                            </div>
-                            <div class="sidebar-item" data-target="healthcare">
-                                <span class="sidebar-icon">🏥</span>
-                                Healthcare & MedTech
-                            </div>
-                            <div class="sidebar-item" data-target="ecommerce">
-                                <span class="sidebar-icon">🛒</span>
-                                E-commerce & Retail
-                            </div>
-                            <div class="sidebar-item" data-target="manufacturing">
-                                <span class="sidebar-icon">🏭</span>
-                                Manufacturing
-                            </div>
-                        </div>
-                        <div class="content-area">
-                            <div class="content-section active" id="fintech">
-                                <h3 class="content-title">Financial Services</h3>
-                                <p class="content-description">
-                                    Innovative fintech solutions that enhance customer experience, ensure
-                                    compliance, and drive digital transformation in the financial sector.
-                                </p>
-                                <ul class="feature-list">
-                                    <li class="feature-item">Digital Banking Platforms</li>
-                                    <li class="feature-item">Payment Gateway Integration</li>
-                                    <li class="feature-item">Blockchain & Cryptocurrency</li>
-                                    <li class="feature-item">Risk Management Systems</li>
-                                    <li class="feature-item">Regulatory Compliance Solutions</li>
-                                    <li class="feature-item">Robo-Advisory Platforms</li>
-                                </ul>
-                                <a href="#" class="cta-button">Explore Fintech Solutions</a>
-                            </div>
-                            <div class="content-section" id="healthcare">
-                                <h3 class="content-title">Healthcare & MedTech</h3>
-                                <p class="content-description">
-                                    Advanced healthcare technology solutions that improve patient outcomes,
-                                    streamline operations, and enable personalized medicine.
-                                </p>
-                                <ul class="feature-list">
-                                    <li class="feature-item">Electronic Health Records (EHR)</li>
-                                    <li class="feature-item">Telemedicine & Remote Care</li>
-                                    <li class="feature-item">Medical Device Integration</li>
-                                    <li class="feature-item">Healthcare Analytics & AI</li>
-                                    <li class="feature-item">HIPAA Compliance Solutions</li>
-                                    <li class="feature-item">Clinical Trial Management</li>
-                                </ul>
-                                <a href="#" class="cta-button">Healthcare Solutions</a>
-                            </div>
-                            <div class="content-section" id="ecommerce">
-                                <h3 class="content-title">E-commerce & Retail</h3>
-                                <p class="content-description">
-                                    Modern retail technology solutions that create seamless shopping experiences and
-                                    optimize business operations across all channels.
-                                </p>
-                                <ul class="feature-list">
-                                    <li class="feature-item">E-commerce Platform Development</li>
-                                    <li class="feature-item">Omnichannel Customer Experience</li>
-                                    <li class="feature-item">Inventory Management Systems</li>
-                                    <li class="feature-item">Personalization & Recommendation</li>
-                                    <li class="feature-item">Point of Sale (POS) Systems</li>
-                                    <li class="feature-item">Supply Chain Optimization</li>
-                                </ul>
-                                <a href="#" class="cta-button">Retail Technology</a>
-                            </div>
-                            <div class="content-section" id="manufacturing">
-                                <h3 class="content-title">Manufacturing</h3>
-                                <p class="content-description">
-                                    Smart manufacturing solutions that leverage IoT, AI, and automation to optimize
-                                    production, reduce costs, and improve quality.
-                                </p>
-                                <ul class="feature-list">
-                                    <li class="feature-item">Industrial IoT & Smart Sensors</li>
-                                    <li class="feature-item">Manufacturing Execution Systems</li>
-                                    <li class="feature-item">Predictive Maintenance</li>
-                                    <li class="feature-item">Quality Management Systems</li>
-                                    <li class="feature-item">Production Planning & Scheduling</li>
-                                    <li class="feature-item">Digital Twin Technology</li>
-                                </ul>
-                                <a href="#" class="cta-button">Manufacturing Tech</a>
+                            <div class="content-area">
+                                <div class="content-section active" id="enterprise">
+                                    <h3 class="content-title">Enterprise Solutions</h3>
+                                    <p class="content-description">
+                                        Comprehensive enterprise-grade solutions designed to streamline operations,
+                                        enhance productivity, and drive business growth at scale.
+                                    </p>
+                                    <ul class="feature-list">
+                                        <li class="feature-item">ERP Implementation & Customization</li>
+                                        <li class="feature-item">Customer Relationship Management</li>
+                                        <li class="feature-item">Supply Chain Management</li>
+                                        <li class="feature-item">Business Process Automation</li>
+                                        <li class="feature-item">Enterprise Resource Planning</li>
+                                        <li class="feature-item">Workflow Management Systems</li>
+                                    </ul>
+                                    <a href="#" class="cta-button">View Enterprise Solutions</a>
+                                </div>
+                                <div class="content-section" id="digital-transform">
+                                    <h3 class="content-title">Digital Transformation</h3>
+                                    <p class="content-description">
+                                        Accelerate your digital journey with strategic transformation initiatives that
+                                        modernize operations and create new business opportunities.
+                                    </p>
+                                    <ul class="feature-list">
+                                        <li class="feature-item">Digital Strategy & Roadmap</li>
+                                        <li class="feature-item">Legacy System Modernization</li>
+                                        <li class="feature-item">API-First Architecture</li>
+                                        <li class="feature-item">Microservices Implementation</li>
+                                        <li class="feature-item">Digital Customer Experience</li>
+                                        <li class="feature-item">Innovation Lab & Prototyping</li>
+                                    </ul>
+                                    <a href="#" class="cta-button">Start Your Transformation</a>
+                                </div>
+                                <div class="content-section" id="data-analytics">
+                                    <h3 class="content-title">Data Analytics</h3>
+                                    <p class="content-description">
+                                        Unlock the value of your data with advanced analytics solutions that provide
+                                        actionable insights and drive data-driven decision making.
+                                    </p>
+                                    <ul class="feature-list">
+                                        <li class="feature-item">Business Intelligence Dashboards</li>
+                                        <li class="feature-item">Real-time Data Processing</li>
+                                        <li class="feature-item">Data Warehousing & ETL</li>
+                                        <li class="feature-item">Advanced Analytics & Reporting</li>
+                                        <li class="feature-item">Data Visualization & Storytelling</li>
+                                        <li class="feature-item">Big Data & IoT Analytics</li>
+                                    </ul>
+                                    <a href="#" class="cta-button">Explore Analytics</a>
+                                </div>
+                                <div class="content-section" id="integration">
+                                    <h3 class="content-title">System Integration</h3>
+                                    <p class="content-description">
+                                        Seamlessly connect your systems, applications, and data sources to create a
+                                        unified digital ecosystem that enhances operational efficiency.
+                                    </p>
+                                    <ul class="feature-list">
+                                        <li class="feature-item">API Development & Management</li>
+                                        <li class="feature-item">Third-party System Integration</li>
+                                        <li class="feature-item">Database Integration & Migration</li>
+                                        <li class="feature-item">B2B Integration & EDI</li>
+                                        <li class="feature-item">Cloud-to-Cloud Integration</li>
+                                        <li class="feature-item">Real-time Data Synchronization</li>
+                                    </ul>
+                                    <a href="#" class="cta-button">Integrate Systems</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">About</a>
-                <div class="glass-panel">
-                    <div class="panel-content">
-                        <div class="sidebar">
-                            <div class="sidebar-item active" data-target="company">
-                                <span class="sidebar-icon">🏢</span>
-                                Our Company
+                </li>
+                
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Industries</a>
+                    <div class="glass-panel">
+                        <div class="panel-content">
+                            <div class="sidebar">
+                                <div class="sidebar-item active" data-target="fintech">
+                                    <span class="sidebar-icon">💳</span>
+                                    Financial Services
+                                </div>
+                                <div class="sidebar-item" data-target="healthcare">
+                                    <span class="sidebar-icon">🏥</span>
+                                    Healthcare & MedTech
+                                </div>
+                                <div class="sidebar-item" data-target="ecommerce">
+                                    <span class="sidebar-icon">🛒</span>
+                                    E-commerce & Retail
+                                </div>
+                                <div class="sidebar-item" data-target="manufacturing">
+                                    <span class="sidebar-icon">🏭</span>
+                                    Manufacturing
+                                </div>
                             </div>
-                            <div class="sidebar-item" data-target="team">
-                                <span class="sidebar-icon">👥</span>
-                                Our Team
-                            </div>
-                            <div class="sidebar-item" data-target="culture">
-                                <span class="sidebar-icon">🌟</span>
-                                Culture & Values
-                            </div>
-                            <div class="sidebar-item" data-target="careers">
-                                <span class="sidebar-icon">💼</span>
-                                Careers
-                            </div>
-                        </div>
-                        <div class="content-area">
-                            <div class="content-section active" id="company">
-                                <h3 class="content-title">Our Company</h3>
-                                <p class="content-description">
-                                    TechNova is a leading technology consulting firm with over 15 years of
-                                    experience delivering innovative solutions to businesses worldwide. We combine
-                                    deep technical expertise with strategic thinking to drive digital
-                                    transformation.
-                                </p>
-                                <ul class="feature-list">
-                                    <li class="feature-item">Founded in 2009 with global presence</li>
-                                    <li class="feature-item">500+ successful projects delivered</li>
-                                    <li class="feature-item">200+ expert consultants and developers</li>
-                                    <li class="feature-item">ISO 27001 & SOC 2 Type II certified</li>
-                                    <li class="feature-item">Partnerships with major cloud providers</li>
-                                    <li class="feature-item">Award-winning innovation lab</li>
-                                </ul>
-                                <a href="#" class="cta-button">Learn Our Story</a>
-                            </div>
-                            <div class="content-section" id="team">
-                                <h3 class="content-title">Our Team</h3>
-                                <p class="content-description">
-                                    Our diverse team of technology experts, strategists, and innovators brings
-                                    together decades of experience across various industries and cutting-edge
-                                    technologies.
-                                </p>
-                                <ul class="feature-list">
-                                    <li class="feature-item">Senior architects & technical leads</li>
-                                    <li class="feature-item">Certified cloud specialists</li>
-                                    <li class="feature-item">AI/ML research scientists</li>
-                                    <li class="feature-item">UX/UI design experts</li>
-                                    <li class="feature-item">DevOps & infrastructure engineers</li>
-                                    <li class="feature-item">Business strategy consultants</li>
-                                </ul>
-                                <a href="#" class="cta-button">Meet The Team</a>
-                            </div>
-                            <div class="content-section" id="culture">
-                                <h3 class="content-title">Culture & Values</h3>
-                                <p class="content-description">
-                                    We foster an inclusive, innovative culture where continuous learning,
-                                    collaboration, and excellence drive everything we do. Our values guide our
-                                    relationships with clients and each other.
-                                </p>
-                                <ul class="feature-list">
-                                    <li class="feature-item">Innovation & continuous improvement</li>
-                                    <li class="feature-item">Client success & long-term partnerships</li>
-                                    <li class="feature-item">Integrity & transparent communication</li>
-                                    <li class="feature-item">Diversity, equity & inclusion</li>
-                                    <li class="feature-item">Work-life balance & flexibility</li>
-                                    <li class="feature-item">Social responsibility & sustainability</li>
-                                </ul>
-                                <a href="#" class="cta-button">Our Values</a>
-                            </div>
-                            <div class="content-section" id="careers">
-                                <h3 class="content-title">Careers</h3>
-                                <p class="content-description">
-                                    Join our team of innovators and make a meaningful impact on the future of
-                                    technology. We offer exciting opportunities for growth, learning, and
-                                    professional development.
-                                </p>
-                                <ul class="feature-list">
-                                    <li class="feature-item">Remote-first & flexible work options</li>
-                                    <li class="feature-item">Competitive compensation & benefits</li>
-                                    <li class="feature-item">Professional development budget</li>
-                                    <li class="feature-item">Certification & training programs</li>
-                                    <li class="feature-item">Innovation time & hackathons</li>
-                                    <li class="feature-item">Health & wellness programs</li>
-                                </ul>
-                                <a href="#" class="cta-button">View Open Positions</a>
+                            <div class="content-area">
+                                <div class="content-section active" id="fintech">
+                                    <h3 class="content-title">Financial Services</h3>
+                                    <p class="content-description">
+                                        Innovative fintech solutions that enhance customer experience, ensure
+                                        compliance, and drive digital transformation in the financial sector.
+                                    </p>
+                                    <ul class="feature-list">
+                                        <li class="feature-item">Digital Banking Platforms</li>
+                                        <li class="feature-item">Payment Gateway Integration</li>
+                                        <li class="feature-item">Blockchain & Cryptocurrency</li>
+                                        <li class="feature-item">Risk Management Systems</li>
+                                        <li class="feature-item">Regulatory Compliance Solutions</li>
+                                        <li class="feature-item">Robo-Advisory Platforms</li>
+                                    </ul>
+                                    <a href="#" class="cta-button">Explore Fintech Solutions</a>
+                                </div>
+                                <div class="content-section" id="healthcare">
+                                    <h3 class="content-title">Healthcare & MedTech</h3>
+                                    <p class="content-description">
+                                        Advanced healthcare technology solutions that improve patient outcomes,
+                                        streamline operations, and enable personalized medicine.
+                                    </p>
+                                    <ul class="feature-list">
+                                        <li class="feature-item">Electronic Health Records (EHR)</li>
+                                        <li class="feature-item">Telemedicine & Remote Care</li>
+                                        <li class="feature-item">Medical Device Integration</li>
+                                        <li class="feature-item">Healthcare Analytics & AI</li>
+                                        <li class="feature-item">HIPAA Compliance Solutions</li>
+                                        <li class="feature-item">Clinical Trial Management</li>
+                                    </ul>
+                                    <a href="#" class="cta-button">Healthcare Solutions</a>
+                                </div>
+                                <div class="content-section" id="ecommerce">
+                                    <h3 class="content-title">E-commerce & Retail</h3>
+                                    <p class="content-description">
+                                        Modern retail technology solutions that create seamless shopping experiences and
+                                        optimize business operations across all channels.
+                                    </p>
+                                    <ul class="feature-list">
+                                        <li class="feature-item">E-commerce Platform Development</li>
+                                        <li class="feature-item">Omnichannel Customer Experience</li>
+                                        <li class="feature-item">Inventory Management Systems</li>
+                                        <li class="feature-item">Personalization & Recommendation</li>
+                                        <li class="feature-item">Point of Sale (POS) Systems</li>
+                                        <li class="feature-item">Supply Chain Optimization</li>
+                                    </ul>
+                                    <a href="#" class="cta-button">Retail Technology</a>
+                                </div>
+                                <div class="content-section" id="manufacturing">
+                                    <h3 class="content-title">Manufacturing</h3>
+                                    <p class="content-description">
+                                        Smart manufacturing solutions that leverage IoT, AI, and automation to optimize
+                                        production, reduce costs, and improve quality.
+                                    </p>
+                                    <ul class="feature-list">
+                                        <li class="feature-item">Industrial IoT & Smart Sensors</li>
+                                        <li class="feature-item">Manufacturing Execution Systems</li>
+                                        <li class="feature-item">Predictive Maintenance</li>
+                                        <li class="feature-item">Quality Management Systems</li>
+                                        <li class="feature-item">Production Planning & Scheduling</li>
+                                        <li class="feature-item">Digital Twin Technology</li>
+                                    </ul>
+                                    <a href="#" class="cta-button">Manufacturing Tech</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">Contact</a>
-                <div class="glass-panel">
-                    <div class="panel-content">
-                        <div class="sidebar">
-                            <div class="sidebar-item active" data-target="get-started">
-                                <span class="sidebar-icon">🚀</span>
-                                Get Started
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">About</a>
+                    <div class="glass-panel">
+                        <div class="panel-content">
+                            <div class="sidebar">
+                                <div class="sidebar-item active" data-target="company">
+                                    <span class="sidebar-icon">🏢</span>
+                                    Our Company
+                                </div>
+                                <div class="sidebar-item" data-target="team">
+                                    <span class="sidebar-icon">👥</span>
+                                    Our Team
+                                </div>
+                                <div class="sidebar-item" data-target="culture">
+                                    <span class="sidebar-icon">🌟</span>
+                                    Culture & Values
+                                </div>
+                                <div class="sidebar-item" data-target="careers">
+                                    <span class="sidebar-icon">💼</span>
+                                    Careers
+                                </div>
                             </div>
-                            <div class="sidebar-item" data-target="consultation">
-                                <span class="sidebar-icon">💬</span>
-                                Free Consultation
-                            </div>
-                            <div class="sidebar-item" data-target="support">
-                                <span class="sidebar-icon">🛠️</span>
-                                Support Center
-                            </div>
-                            <div class="sidebar-item" data-target="offices">
-                                <span class="sidebar-icon">📍</span>
-                                Global Offices
-                            </div>
-                        </div>
-                        <div class="content-area">
-                            <div class="content-section active" id="get-started">
-                                <h3 class="content-title">Get Started</h3>
-                                <p class="content-description">
-                                    Ready to transform your business with cutting-edge technology? Let's discuss
-                                    your project requirements and explore how we can help you achieve your goals.
-                                </p>
-                                <ul class="feature-list">
-                                    <li class="feature-item">Project discovery & requirements analysis</li>
-                                    <li class="feature-item">Technology stack recommendations</li>
-                                    <li class="feature-item">Timeline & budget estimation</li>
-                                    <li class="feature-item">Risk assessment & mitigation</li>
-                                    <li class="feature-item">Proof of concept development</li>
-                                    <li class="feature-item">Implementation roadmap planning</li>
-                                </ul>
-                                <a href="#" class="cta-button">Start Your Project</a>
-                            </div>
-                            <div class="content-section" id="consultation">
-                                <h3 class="content-title">Free Consultation</h3>
-                                <p class="content-description">
-                                    Schedule a complimentary consultation with our technology experts to discuss
-                                    your challenges, explore solutions, and understand how we can add value to your
-                                    business.
-                                </p>
-                                <ul class="feature-list">
-                                    <li class="feature-item">30-minute strategy session</li>
-                                    <li class="feature-item">Technology assessment & recommendations</li>
-                                    <li class="feature-item">Digital transformation roadmap</li>
-                                    <li class="feature-item">Cost-benefit analysis</li>
-                                    <li class="feature-item">Implementation timeline discussion</li>
-                                    <li class="feature-item">No-obligation proposal</li>
-                                </ul>
-                                <a href="#" class="cta-button">Book Consultation</a>
-                            </div>
-                            <div class="content-section" id="support">
-                                <h3 class="content-title">Support Center</h3>
-                                <p class="content-description">
-                                    Our dedicated support team is here to help you with technical issues, questions,
-                                    and guidance. Access resources, documentation, and expert assistance.
-                                </p>
-                                <ul class="feature-list">
-                                    <li class="feature-item">24/7 technical support hotline</li>
-                                    <li class="feature-item">Online knowledge base & tutorials</li>
-                                    <li class="feature-item">Video training sessions</li>
-                                    <li class="feature-item">Community forum & discussions</li>
-                                    <li class="feature-item">System health monitoring</li>
-                                    <li class="feature-item">Maintenance & updates</li>
-                                </ul>
-                                <a href="#" class="cta-button">Access Support</a>
-                            </div>
-                            <div class="content-section" id="offices">
-                                <h3 class="content-title">Global Offices</h3>
-                                <p class="content-description">
-                                    With offices across major technology hubs worldwide, we provide local expertise
-                                    with global reach to serve clients in different time zones and markets.
-                                </p>
-                                <ul class="feature-list">
-                                    <li class="feature-item">San Francisco, CA - Innovation Hub</li>
-                                    <li class="feature-item">New York, NY - Financial Services Center</li>
-                                    <li class="feature-item">London, UK - European Operations</li>
-                                    <li class="feature-item">Singapore - Asia-Pacific Hub</li>
-                                    <li class="feature-item">Toronto, Canada - North American Center</li>
-                                    <li class="feature-item">Tel Aviv, Israel - R&D Center</li>
-                                </ul>
-                                <a href="#" class="cta-button">Find Your Office</a>
+                            <div class="content-area">
+                                <div class="content-section active" id="company">
+                                    <h3 class="content-title">Our Company</h3>
+                                    <p class="content-description">
+                                        TechNova is a leading technology consulting firm with over 15 years of
+                                        experience delivering innovative solutions to businesses worldwide. We combine
+                                        deep technical expertise with strategic thinking to drive digital
+                                        transformation.
+                                    </p>
+                                    <ul class="feature-list">
+                                        <li class="feature-item">Founded in 2009 with global presence</li>
+                                        <li class="feature-item">500+ successful projects delivered</li>
+                                        <li class="feature-item">200+ expert consultants and developers</li>
+                                        <li class="feature-item">ISO 27001 & SOC 2 Type II certified</li>
+                                        <li class="feature-item">Partnerships with major cloud providers</li>
+                                        <li class="feature-item">Award-winning innovation lab</li>
+                                    </ul>
+                                    <a href="#" class="cta-button">Learn Our Story</a>
+                                </div>
+                                <div class="content-section" id="team">
+                                    <h3 class="content-title">Our Team</h3>
+                                    <p class="content-description">
+                                        Our diverse team of technology experts, strategists, and innovators brings
+                                        together decades of experience across various industries and cutting-edge
+                                        technologies.
+                                    </p>
+                                    <ul class="feature-list">
+                                        <li class="feature-item">Senior architects & technical leads</li>
+                                        <li class="feature-item">Certified cloud specialists</li>
+                                        <li class="feature-item">AI/ML research scientists</li>
+                                        <li class="feature-item">UX/UI design experts</li>
+                                        <li class="feature-item">DevOps & infrastructure engineers</li>
+                                        <li class="feature-item">Business strategy consultants</li>
+                                    </ul>
+                                    <a href="#" class="cta-button">Meet The Team</a>
+                                </div>
+                                <div class="content-section" id="culture">
+                                    <h3 class="content-title">Culture & Values</h3>
+                                    <p class="content-description">
+                                        We foster an inclusive, innovative culture where continuous learning,
+                                        collaboration, and excellence drive everything we do. Our values guide our
+                                        relationships with clients and each other.
+                                    </p>
+                                    <ul class="feature-list">
+                                        <li class="feature-item">Innovation & continuous improvement</li>
+                                        <li class="feature-item">Client success & long-term partnerships</li>
+                                        <li class="feature-item">Integrity & transparent communication</li>
+                                        <li class="feature-item">Diversity, equity & inclusion</li>
+                                        <li class="feature-item">Work-life balance & flexibility</li>
+                                        <li class="feature-item">Social responsibility & sustainability</li>
+                                    </ul>
+                                    <a href="#" class="cta-button">Our Values</a>
+                                </div>
+                                <div class="content-section" id="careers">
+                                    <h3 class="content-title">Careers</h3>
+                                    <p class="content-description">
+                                        Join our team of innovators and make a meaningful impact on the future of
+                                        technology. We offer exciting opportunities for growth, learning, and
+                                        professional development.
+                                    </p>
+                                    <ul class="feature-list">
+                                        <li class="feature-item">Remote-first & flexible work options</li>
+                                        <li class="feature-item">Competitive compensation & benefits</li>
+                                        <li class="feature-item">Professional development budget</li>
+                                        <li class="feature-item">Certification & training programs</li>
+                                        <li class="feature-item">Innovation time & hackathons</li>
+                                        <li class="feature-item">Health & wellness programs</li>
+                                    </ul>
+                                    <a href="#" class="cta-button">View Open Positions</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </li>
-        </ul>
-    </div>
-</nav>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Contact</a>
+                    <div class="glass-panel">
+                        <div class="panel-content">
+                            <div class="sidebar">
+                                <div class="sidebar-item active" data-target="get-started">
+                                    <span class="sidebar-icon">🚀</span>
+                                    Get Started
+                                </div>
+                                <div class="sidebar-item" data-target="consultation">
+                                    <span class="sidebar-icon">💬</span>
+                                    Free Consultation
+                                </div>
+                                <div class="sidebar-item" data-target="support">
+                                    <span class="sidebar-icon">🛠️</span>
+                                    Support Center
+                                </div>
+                                <div class="sidebar-item" data-target="offices">
+                                    <span class="sidebar-icon">📍</span>
+                                    Global Offices
+                                </div>
+                            </div>
+                            <div class="content-area">
+                                <div class="content-section active" id="get-started">
+                                    <h3 class="content-title">Get Started</h3>
+                                    <p class="content-description">
+                                        Ready to transform your business with cutting-edge technology? Let's discuss
+                                        your project requirements and explore how we can help you achieve your goals.
+                                    </p>
+                                    <ul class="feature-list">
+                                        <li class="feature-item">Project discovery & requirements analysis</li>
+                                        <li class="feature-item">Technology stack recommendations</li>
+                                        <li class="feature-item">Timeline & budget estimation</li>
+                                        <li class="feature-item">Risk assessment & mitigation</li>
+                                        <li class="feature-item">Proof of concept development</li>
+                                        <li class="feature-item">Implementation roadmap planning</li>
+                                    </ul>
+                                    <a href="#" class="cta-button">Start Your Project</a>
+                                </div>
+                                <div class="content-section" id="consultation">
+                                    <h3 class="content-title">Free Consultation</h3>
+                                    <p class="content-description">
+                                        Schedule a complimentary consultation with our technology experts to discuss
+                                        your challenges, explore solutions, and understand how we can add value to your
+                                        business.
+                                    </p>
+                                    <ul class="feature-list">
+                                        <li class="feature-item">30-minute strategy session</li>
+                                        <li class="feature-item">Technology assessment & recommendations</li>
+                                        <li class="feature-item">Digital transformation roadmap</li>
+                                        <li class="feature-item">Cost-benefit analysis</li>
+                                        <li class="feature-item">Implementation timeline discussion</li>
+                                        <li class="feature-item">No-obligation proposal</li>
+                                    </ul>
+                                    <a href="#" class="cta-button">Book Consultation</a>
+                                </div>
+                                <div class="content-section" id="support">
+                                    <h3 class="content-title">Support Center</h3>
+                                    <p class="content-description">
+                                        Our dedicated support team is here to help you with technical issues, questions,
+                                        and guidance. Access resources, documentation, and expert assistance.
+                                    </p>
+                                    <ul class="feature-list">
+                                        <li class="feature-item">24/7 technical support hotline</li>
+                                        <li class="feature-item">Online knowledge base & tutorials</li>
+                                        <li class="feature-item">Video training sessions</li>
+                                        <li class="feature-item">Community forum & discussions</li>
+                                        <li class="feature-item">System health monitoring</li>
+                                        <li class="feature-item">Maintenance & updates</li>
+                                    </ul>
+                                    <a href="#" class="cta-button">Access Support</a>
+                                </div>
+                                <div class="content-section" id="offices">
+                                    <h3 class="content-title">Global Offices</h3>
+                                    <p class="content-description">
+                                        With offices across major technology hubs worldwide, we provide local expertise
+                                        with global reach to serve clients in different time zones and markets.
+                                    </p>
+                                    <ul class="feature-list">
+                                        <li class="feature-item">San Francisco, CA - Innovation Hub</li>
+                                        <li class="feature-item">New York, NY - Financial Services Center</li>
+                                        <li class="feature-item">London, UK - European Operations</li>
+                                        <li class="feature-item">Singapore - Asia-Pacific Hub</li>
+                                        <li class="feature-item">Toronto, Canada - North American Center</li>
+                                        <li class="feature-item">Tel Aviv, Israel - R&D Center</li>
+                                    </ul>
+                                    <a href="#" class="cta-button">Find Your Office</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <script>
+        // Handle sidebar navigation with improved performance
+        const sidebarItems = document.querySelectorAll('.sidebar-item');
+        const contentSections = document.querySelectorAll('.content-section');
+
+        sidebarItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.stopPropagation();
+
+                // Get the parent glass panel to scope the changes
+                const glassPanel = item.closest('.glass-panel');
+                if (!glassPanel) return;
+
+                const panelSidebarItems = glassPanel.querySelectorAll('.sidebar-item');
+                const panelContentSections = glassPanel.querySelectorAll('.content-section');
+
+                // Remove active class from all items in this panel
+                panelSidebarItems.forEach(i => i.classList.remove('active'));
+                panelContentSections.forEach(section => section.classList.remove('active'));
+
+                // Add active class to clicked item
+                item.classList.add('active');
+
+                // Show corresponding content
+                const targetId = item.getAttribute('data-target');
+                const targetSection = glassPanel.querySelector(`#${targetId}`);
+                if (targetSection) {
+                    targetSection.classList.add('active');
+                }
+            });
+        });
+
+        // Enhanced hover effects with better performance and smooth transitions
+        const navItems = document.querySelectorAll('.nav-item');
+
+        navItems.forEach(item => {
+            let hoverTimeout;
+            let isHovering = false;
+
+            const showPanel = () => {
+                if (!isHovering) return;
+                const panel = item.querySelector('.glass-panel');
+                if (panel) {
+                    clearTimeout(hoverTimeout);
+                    panel.style.pointerEvents = 'auto';
+                    requestAnimationFrame(() => {
+                        panel.style.opacity = '1';
+                        panel.style.visibility = 'visible';
+                        panel.style.transform = 'translateX(-50%) translateY(15px)';
+                    });
+                }
+            };
+
+            const hidePanel = () => {
+                isHovering = false;
+                const panel = item.querySelector('.glass-panel');
+                if (panel) {
+                    panel.style.opacity = '0';
+                    panel.style.visibility = 'hidden';
+                    panel.style.transform = 'translateX(-50%) translateY(0)';
+                    hoverTimeout = setTimeout(() => {
+                        if (!isHovering) {
+                            panel.style.pointerEvents = 'none';
+                        }
+                    }, 400);
+                }
+            };
+
+            item.addEventListener('mouseenter', () => {
+                isHovering = true;
+                showPanel();
+            });
+
+            item.addEventListener('mouseleave', (e) => {
+                // Check if we're moving to a child element
+                if (item.contains(e.relatedTarget)) {
+                    return;
+                }
+                hidePanel();
+            });
+
+            // Handle panel hover to keep it open
+            const panel = item.querySelector('.glass-panel');
+            if (panel) {
+                panel.addEventListener('mouseenter', () => {
+                    isHovering = true;
+                    clearTimeout(hoverTimeout);
+                });
+
+                panel.addEventListener('mouseleave', () => {
+                    hidePanel();
+                });
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add loading animation on CTA button clicks
+        document.querySelectorAll('.cta-button').forEach(button => {
+            button.addEventListener('click', function (e) {
+                e.preventDefault();
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
+        });
+
+        // Performance optimization: Debounce resize events
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                // Handle responsive adjustments if needed
+                const panels = document.querySelectorAll('.glass-panel');
+                panels.forEach(panel => {
+                    if (window.innerWidth <= 768) {
+                        panel.style.width = '95vw';
+                    } else {
+                        panel.style.width = '900px';
+                    }
+                });
+            }, 250);
+        });
+    </script>
+</body>
+
+</html>
