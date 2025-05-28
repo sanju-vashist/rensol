@@ -226,11 +226,27 @@
      border: none;
      border-radius: 30px;
      cursor: pointer;
-     font-weight: bold;
+     font-weight: 500;
      font-size: 1rem;
      transition: var(--transition);
+     text-decoration: none;
  }
 
+
+ .cta {
+     margin-top: 1.5rem;
+     padding: 0.8rem 1.5rem;
+     background: var(--gradient-primary);
+     color: var(--text-primary);
+     border: none;
+     border-radius: 30px;
+     cursor: pointer;
+     font-weight: 500;
+     font-size: 1rem;
+     transition: var(--transition);
+     text-decoration: none;
+ }
+ 
  .hero-text .cta:hover {
      background: linear-gradient(135deg, #8ad5ff, #ff7eb3);
      transform: scale(1.05);
